@@ -1,0 +1,7 @@
+
+*.pyc
+.*swp
+db.sqlite3
+/static/
+/media/
+/tmp/
