@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block header %}
+<style type="text/css">
+html {
+    font-family: "quicksandbold";
+    font-weight: bold;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+nav ul a:hover, .btn{
+    background-color: #52c0e8;
+}
+footer.page-footer{
+  margin-top: 0px;
+  padding-top: 0px;
+}
+
+.slider .indicators .indicator-item.active {
+    background-color: #52c0e8;
+}
+
+.slider .indicators .indicator-item {
+    height: 10px;
+    width: 10px;
+}
+
+.slider {
+    height: 600px;
+}
+
+.btn:hover {
+    background-color: black;
+}
+
+</style>
+{% endblock %}
+
+
+{% block content %}
+<div id="navbar">
+    <nav  class="grey darken-4">
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo">Bewet</a>
+            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="login.html">Mon espace</a></li>
+                <li><a href="club/login.html">Espace club</a></li>
+            </ul>
+            <ul class="side-nav" id="mobile-demo">
+                <li><a href="login.html">Mon espace</a></li>
+                <li><a href="club/login.html">Espace club</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+
+<div class="slider grey darken-4" style="height: 600px;">
+    <ul class="slides grey darken-4">
+        <li>
+            <img src="{% static 'landing/images/bg01.jpg' %}"> 
+            <div class="caption center-align">
+                <h3>Trouvez facilement un embarquement</h3>
+                <h4 class="light grey-text text-lighten-3">435 embarquements inscrits </h4>
+                </br>
+                <a class="btn"><span>Inscription gratuite</span></a>
+            </div>
+        </li>
+        <li>
+            <img src="{% static 'landing/images/bg02.jpg' %}">
+            <div class="caption left-align">
+                <h3>Trouvez facilement un embarquement</h3>
+                <h4 class="light grey-text text-lighten-3">435 embarquements inscrits </h4>
+                </br>
+                <a class="btn"><span>Inscription gratuite</span></a>
+            </div>
+        </li>
+        <li>
+            <img src="{% static 'landing/images/bg03.jpg' %}">
+            <div class="caption right-align">
+                <h3>Trouvez facilement un embarquement</h3>
+                <h4 class="light grey-text text-lighten-3">435 embarquements inscrits </h4>
+                </br>
+                <a class="btn"><span>Inscription gratuite</span></a>
+            </div>
+        </li>
+    </ul>
+</div>
+
+
+
+<footer class="page-footer grey darken-4">
+    <div class="row" >
+        <div class="col l6 s12">
+            <h5 class="white-text">Footer Content</h5>
+            <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+        </div>
+        <div class="col l4 offset-l2 s12">
+            <h5 class="white-text">Links</h5>
+            <ul>
+                <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+                <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-copyright grey darken-4">
+        <div class="container">
+            © 2014 Copyright Text
+            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+        </div>
+    </div>
+</footer>
+
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+$( document ).ready(function(){
+    $('.button-collapse').sideNav();
+    $('.slider').slider({full_width: true});
+}) 
+</script>
+{% endblock %}

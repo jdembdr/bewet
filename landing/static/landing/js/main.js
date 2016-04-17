@@ -21,6 +21,7 @@
 
     // Vars.
     var	$body = document.querySelector('body');
+    var	$content = document.querySelector('#content');
 
     // Disable animations/transitions until everything's loaded.
     $body.classList.add('is-loading');
@@ -53,7 +54,7 @@
         // Create BG wrapper, BGs.
         $wrapper = document.createElement('div');
         $wrapper.id = 'bg';
-        $body.appendChild($wrapper);
+        $content.appendChild($wrapper);
 
         for (k in settings.images) {
 
