@@ -17,16 +17,17 @@ from django.conf.urls import include, url, patterns
 from django.contrib import admin
 from django.conf import settings
 
+import landing.views
+
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', 'landing.views.comingsoon'),
-    url(r'^welcome/$', 'landing.views.welcome'),
-
+    url(r'soon^$', landing.views.comingsoon),
+    url(r'^$', landing.views.welcome),
 ]
 
 
 if settings.DEBUG:
     import debug_toolbar
-    urlpatterns += patterns('',
+    urlpatterns += [
         url(r'^__debug__/', include(debug_toolbar.urls)),
-    )
+    ]

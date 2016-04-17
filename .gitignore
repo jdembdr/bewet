@@ -5,3 +5,5 @@ db.sqlite3
 /static/
 /media/
 /tmp/
+/openshift/
+/env_bewet/
