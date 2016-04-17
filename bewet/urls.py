@@ -21,7 +21,7 @@ import landing.views
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'soon^$', landing.views.comingsoon),
+    url(r'^soon/$', landing.views.comingsoon),
     url(r'^$', landing.views.welcome),
 ]
 
