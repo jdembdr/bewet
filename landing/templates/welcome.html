@@ -31,9 +31,18 @@ footer.page-footer{
     background-color: #52c0e8;
 }
 
+.slider .indicators {
+    bottom: 50;
+    z-index: 2;
+}
+
 .slider .indicators .indicator-item {
     height: 10px;
     width: 10px;
+}
+
+.slider .slides li img {
+    opacity: 0.5;
 }
 
 .slider {
@@ -76,24 +85,27 @@ footer.page-footer{
                 <h4 class="light grey-text text-lighten-3">435 embarquements inscrits </h4>
                 </br>
                 <a class="btn"><span>Inscription gratuite</span></a>
+                <p>J'ai déjà un compte, <span style="text-color: #52c0e8;">je me connecte ici.</span></p>
             </div>
         </li>
         <li>
             <img src="{% static 'landing/images/bg02.jpg' %}">
-            <div class="caption left-align">
+            <div class="caption center-align">
                 <h3>Trouvez facilement un embarquement</h3>
                 <h4 class="light grey-text text-lighten-3">435 embarquements inscrits </h4>
                 </br>
                 <a class="btn"><span>Inscription gratuite</span></a>
+                <p>J'ai déjà un compte, <span style="text-color: #52c0e8;">je me connecte ici.</span></p>
             </div>
         </li>
         <li>
             <img src="{% static 'landing/images/bg03.jpg' %}">
-            <div class="caption right-align">
+            <div class="caption center-align">
                 <h3>Trouvez facilement un embarquement</h3>
                 <h4 class="light grey-text text-lighten-3">435 embarquements inscrits </h4>
                 </br>
                 <a class="btn"><span>Inscription gratuite</span></a>
+                <p>J'ai déjà un compte, <span style="text-color: #52c0e8;">je me connecte ici.</span></p>
             </div>
         </li>
     </ul>
@@ -151,7 +163,10 @@ footer.page-footer{
 <script type="text/javascript">
 $( document ).ready(function(){
     $('.button-collapse').sideNav();
-    $('.slider').slider({full_width: true});
+    $('.slider').slider({
+        full_width: true,
+        height: 800,
+    });
 }) 
 </script>
 {% endblock %}
