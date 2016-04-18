@@ -64,7 +64,7 @@ footer.page-footer{
             <a href="#" class="brand-logo">Bewet</a>
             <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="login.html">Mon espace</a></li>
+                <li><a class="modal-trigger" href="#modal_login">Mon espace</a></li>
                 <li><a href="club/login.html">Espace club</a></li>
             </ul>
             <ul class="side-nav" id="mobile-demo">
@@ -75,6 +75,17 @@ footer.page-footer{
     </nav>
 </div>
 
+
+ <!-- Modal Structure -->
+  <div id="modal_login" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <h4>Modal Header</h4>
+      <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+  </div>
 
 <div class="slider grey darken-4" style="height: 600px;">
     <ul class="slides grey darken-4">
@@ -105,7 +116,7 @@ footer.page-footer{
                 <h4 class="light grey-text text-lighten-3"><font color="#52c0e8">435 </font>embarquements inscrits </h4>
                 </br>
                 <a class="btn"><span>Inscription gratuite</span></a>
-                <p>J'ai déjà un compte, <a href="#"><font color="#52c0e8">je me connecte ici.</font></span></a></p>
+                <p>J'ai déjà un compte, <a class="modal-trigger" href="#modal_login"><font color="#52c0e8">je me connecte ici.</font></span></a></p>
             </div>
         </li>
     </ul>
@@ -167,6 +178,7 @@ $( document ).ready(function(){
         full_width: true,
         height: 800,
     });
+    $('.modal-trigger').leanModal();
 }) 
 </script>
 {% endblock %}
