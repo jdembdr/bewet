@@ -2,58 +2,7 @@
 {% load staticfiles %}
 
 {% block header %}
-<style type="text/css">
-html {
-    font-family: "quicksandbold";
-    font-weight: bold;
-}
-
-body {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-}
-
-main {
-  flex: 1 0 auto;
-}
-
-nav ul a:hover, .btn{
-    background-color: #52c0e8;
-}
-
-footer.page-footer{
-  margin-top: 0px;
-  padding-top: 0px;
-}
-
-.slider .indicators .indicator-item.active {
-    background-color: #52c0e8;
-}
-
-.slider .indicators {
-    bottom: 50;
-    z-index: 2;
-}
-
-.slider .indicators .indicator-item {
-    height: 10px;
-    width: 10px;
-}
-
-.slider .slides li img {
-    opacity: 0.5;
-}
-
-.slider {
-    height: 600px;
-}
-
-.btn:hover {
-    background-color: black;
-}
-
-</style>
+<link rel="stylesheet" href="{% static 'regata/css/regata.css' %}"/>
 {% endblock %}
 
 
@@ -80,7 +29,28 @@ footer.page-footer{
   <div id="modal_login" class="modal modal-fixed-footer grey darken-4">
     <div class="modal-content">
       <h4>Modal Header</h4>
-      <p>A bunch of text</p>
+      <p>
+      <ul>
+          {% if user and not user.is_anonymous %}
+          <li>
+              <a>Hello {{ user.get_full_name|default:user.username }}!</a>
+          </li>
+          <li>
+              <a href="{% url 'auth:logout' %}?next={{ request.path }}">Logout</a>
+          </li>
+          {% else %}
+          <li>
+              <a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}">Login with Facebook</a>
+          </li>
+          <li>
+              <a href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}">Login with Google</a>
+          </li>
+          <li>
+              <a href="{% url 'social:begin' 'twitter' %}?next={{ request.path }}">Login with Twitter</a>
+          </li>
+          {% endif %}
+      </ul>
+      </p>
     </div>
     <div class="modal-footer">
       <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>

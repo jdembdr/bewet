@@ -1,4 +1,5 @@
-"""bewet URL Configuration
+
+"""bewet/Regata  URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.8/topics/http/urls/
@@ -17,22 +18,6 @@ from django.conf.urls import include, url, patterns
 from django.contrib import admin
 from django.conf import settings
 
-import landing.views
-import regata.views
-
-
 urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^soon/$', landing.views.comingsoon),
-    url(r'^$', regata.views.home),
-    url('', include('social.apps.django_app.urls', namespace='social')),
-    url('', include('django.contrib.auth.urls', namespace='auth')),
-    url('', include('regata.urls', namespace='regata')),
 ]
 
-
-if settings.DEBUG:
-    import debug_toolbar
-    urlpatterns += [
-        url(r'^__debug__/', include(debug_toolbar.urls)),
-    ]
