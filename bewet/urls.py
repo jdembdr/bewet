@@ -23,8 +23,13 @@ import regata.views
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^soon/$', landing.views.comingsoon),
+    url(r'^soon/', landing.views.comingsoon),
     url(r'^$', regata.views.home),
+    # Other URL patterns ...
+
+    url(r'^accounts/register/', regata.views.BewetRegistrationView.as_view(),
+        name='registration_register'),
+    url(r'^accounts/', include('registration.backends.hmac.urls')),
     url('', include('social.apps.django_app.urls', namespace='social')),
     url('', include('django.contrib.auth.urls', namespace='auth')),
     url('', include('regata.urls', namespace='regata')),

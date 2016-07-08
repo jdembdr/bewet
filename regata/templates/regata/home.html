@@ -48,6 +48,14 @@
           <li>
               <a href="{% url 'social:begin' 'twitter' %}?next={{ request.path }}">Login with Twitter</a>
           </li>
+          <li>
+              <form method="post" name="login-form" action="{% url 'auth_login' %}">
+                  {% csrf_token %}
+                  <input placeholder="Email" type="email" name="email"></input>
+                  <input placeholder="Password" type="password" name="password"></input>
+                  <button type="submit">Connection</button>
+              </form>
+          </li>
           {% endif %}
       </ul>
       </p>
@@ -65,7 +73,7 @@
                 <h3>Trouvez facilement un embarquement</h3>
                 <h4 class="light grey-text text-lighten-3"><font color="#52c0e8">435 </font>embarquements inscrits </h4>
                 </br>
-                <a class="btn"><span>Inscription gratuite</span></a>
+                <a class="btn" href="{% url 'registration_register' %}"><span>Inscription gratuite</span></a>
                 <p>J'ai déjà un compte, <a href="#"><font color="#52c0e8">je me connecte ici.</font></span></a></p>
             </div>
         </li>
@@ -75,7 +83,7 @@
                 <h3>Trouvez facilement un embarquement</h3>
                 <h4 class="light grey-text text-lighten-3"><font color="#52c0e8">435 </font>embarquements inscrits </h4>
                 </br>
-                <a class="btn"><span>Inscription gratuite</span></a>
+                <a class="btn" href="{% url 'registration_register' %}"><span>Inscription gratuite</span></a>
                 <p>J'ai déjà un compte, <a href="#"><font color="#52c0e8">je me connecte ici.</font></span></a></p>
             </div>
         </li>
@@ -85,7 +93,7 @@
                 <h3>Trouvez facilement un embarquement</h3>
                 <h4 class="light grey-text text-lighten-3"><font color="#52c0e8">435 </font>embarquements inscrits </h4>
                 </br>
-                <a class="btn"><span>Inscription gratuite</span></a>
+                <a class="btn" href="{% url 'registration_register' %}"><span>Inscription gratuite</span></a>
                 <p>J'ai déjà un compte, <a class="modal-trigger" href="#modal_login"><font color="#52c0e8">je me connecte ici.</font></span></a></p>
             </div>
         </li>
