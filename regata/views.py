@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
 
-from registration.forms import RegistrationForm
 from registration.backends.hmac.views import RegistrationView
 from registration import signals
 
@@ -14,6 +13,8 @@ class BewetRegistrationView(RegistrationView):
     """
     Ensure unicity of emails adresses when user register to avoid multiple  due to accounts with social_authentication
     """
+
+    template_name="regata/registration_form.html"
 
     def register(self, form):
         try:

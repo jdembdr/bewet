@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block content %}
+<div id="navbar">
+    <nav  class="grey darken-4">
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo">BeWet</a>
+        </div>
+    </nav>
+</div>
+<div class="container">
+    <div>
+        <p>
+        {% trans 'Veuillez remplir le formulaire afin de valider votre inscription à la communauté BeWet' %}
+        </p>
+    </div>
+    <form method="post" action=".">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <input type="submit" value="{% trans 'Submit' %}" />
+    </form>
+</div>
+{% endblock %}

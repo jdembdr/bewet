@@ -1,10 +1,11 @@
 {% extends "base.html" %}
 {% load staticfiles %}
+{% load i18n %}
 
 {% block header %}
 <link rel="stylesheet" href="{% static 'regata/css/regata.css' %}"/>
+<link rel="stylesheet" href="{% static 'css/ghpages-materialize.css' %}"/>
 {% endblock %}
-
 
 {% block content %}
 <div id="navbar">
@@ -13,93 +14,101 @@
             <a href="#" class="brand-logo">Bewet</a>
             <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a class="modal-trigger" href="#modal_login">Mon espace</a></li>
-                <li><a href="club/login.html">Espace club</a></li>
+                <li><a class="modal-trigger" href="#modal_login">{% trans 'Se connecter' %}</a></li>
+                <li><a href="{% url 'registration_register' %}">{% trans 'S\'inscrire' %}</a></li>
             </ul>
             <ul class="side-nav" id="mobile-demo">
-                <li><a href="login.html">Mon espace</a></li>
-                <li><a href="club/login.html">Espace club</a></li>
+                <li><a class="modal-trigger" href="#modal_login">{% trans 'Se connecter' %}</a></li>
+                <li><a href="{% url 'registration_register' %}">{% trans 'S\'inscrire' %}</a></li>
             </ul>
         </div>
     </nav>
 </div>
 
 
- <!-- Modal Structure -->
-  <div id="modal_login" class="modal modal-fixed-footer grey darken-4">
+<!-- Modal Structure -->
+<div id="modal_login" class="modal modal-fixed-footer grey darken-4">
     <div class="modal-content">
-      <h4>Modal Header</h4>
-      <p>
-      <ul>
-          {% if user and not user.is_anonymous %}
-          <li>
-              <a>Hello {{ user.get_full_name|default:user.username }}!</a>
-          </li>
-          <li>
-              <a href="{% url 'auth:logout' %}?next={{ request.path }}">Logout</a>
-          </li>
-          {% else %}
-          <li>
-              <a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}">Login with Facebook</a>
-          </li>
-          <li>
-              <a href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}">Login with Google</a>
-          </li>
-          <li>
-              <a href="{% url 'social:begin' 'twitter' %}?next={{ request.path }}">Login with Twitter</a>
-          </li>
-          <li>
-              <form method="post" name="login-form" action="{% url 'auth_login' %}">
-                  {% csrf_token %}
-                  <input placeholder="Email" type="email" name="email"></input>
-                  <input placeholder="Password" type="password" name="password"></input>
-                  <button type="submit">Connection</button>
-              </form>
-          </li>
-          {% endif %}
-      </ul>
-      </p>
+        <h4>Modal Header</h4>
+        <p>
+        <ul>
+            {% if user and not user.is_anonymous %}
+            <li>
+                <a>Hello {{ user.get_full_name|default:user.username }}!</a>
+            </li>
+            <li>
+                <a href="{% url 'auth:logout' %}?next={{ request.path }}">Logout</a>
+            </li>
+            {% else %}
+            <li>
+                <a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}">Facebook login</a>
+            </li>
+            <li>
+                <a href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}">Google login</a>
+            </li>
+            <li>
+                <a href="{% url 'social:begin' 'twitter' %}?next={{ request.path }}">Twitter login</a>
+            </li>
+            <li>
+                <form method="post" name="login-form" action="{% url 'auth_login' %}">
+                    {% csrf_token %}
+                    <input placeholder="Email" type="email" name="email"></input>
+                    <input placeholder="Password" type="password" name="password"></input>
+                    <button type="submit">{% trans 'Connexion' %}</button>
+                </form>
+            </li>
+            {% endif %}
+        </ul>
+        </p>
     </div>
     <div class="modal-footer">
-      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">{% trans 'Accepter' %}</a>
     </div>
-  </div>
-
-<div class="slider grey darken-4" style="height: 600px;">
-    <ul class="slides grey darken-4">
-        <li>
-            <img src="{% static 'landing/images/bg01.jpg' %}"> 
-            <div class="caption center-align">
-                <h3>Trouvez facilement un embarquement</h3>
-                <h4 class="light grey-text text-lighten-3"><font color="#52c0e8">435 </font>embarquements inscrits </h4>
-                </br>
-                <a class="btn" href="{% url 'registration_register' %}"><span>Inscription gratuite</span></a>
-                <p>J'ai déjà un compte, <a href="#"><font color="#52c0e8">je me connecte ici.</font></span></a></p>
-            </div>
-        </li>
-        <li>
-            <img src="{% static 'landing/images/bg02.jpg' %}">
-            <div class="caption center-align">
-                <h3>Trouvez facilement un embarquement</h3>
-                <h4 class="light grey-text text-lighten-3"><font color="#52c0e8">435 </font>embarquements inscrits </h4>
-                </br>
-                <a class="btn" href="{% url 'registration_register' %}"><span>Inscription gratuite</span></a>
-                <p>J'ai déjà un compte, <a href="#"><font color="#52c0e8">je me connecte ici.</font></span></a></p>
-            </div>
-        </li>
-        <li>
-            <img src="{% static 'landing/images/bg03.jpg' %}">
-            <div class="caption center-align">
-                <h3>Trouvez facilement un embarquement</h3>
-                <h4 class="light grey-text text-lighten-3"><font color="#52c0e8">435 </font>embarquements inscrits </h4>
-                </br>
-                <a class="btn" href="{% url 'registration_register' %}"><span>Inscription gratuite</span></a>
-                <p>J'ai déjà un compte, <a class="modal-trigger" href="#modal_login"><font color="#52c0e8">je me connecte ici.</font></span></a></p>
-            </div>
-        </li>
-    </ul>
 </div>
 
+<div class="parallax-container">
+    <div class="parallax">
+        <img src="{% static 'landing/images/bg02.jpg' %}">
+    </div>
+</div>
+<div class="section white">
+    <div class="row container">
+        <div class="col s4">
+            <div class="center promo promo-example">
+                <i class="material-icons">flash_on</i>
+                <p class="promo-caption">Speeds up development</p>
+                <p class="light center">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components.</p>
+            </div>
+        </div>
+        <div class="col s4">
+            <div class="center promo promo-example">
+                <i class="material-icons">group</i>
+                <p class="promo-caption">User Experience Focused</p>
+                <p class="light center">By utilizing elements and principles of Material Design, we were able to create a framework that focuses on User Experience.</p>
+            </div>
+        </div>
+        <div class="col s4">
+            <div class="center promo promo-example">
+                <i class="material-icons">settings</i>
+                <p class="promo-caption">Easy to work with</p>
+                <p class="light center">We have provided detailed documentation as well as specific code examples to help new users get started.</p>
+            </div>
+        </div>
+    </div>
+    <div class="row container">
+        <div class="col s8">
+            <div class="center promo promo-example">
+                <i class="material-icons">flash_on</i>
+                <p class="promo-caption">Speeds up development</p>
+                <p class="light center">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components.</p>
+            </div>
+        </div>
+</div>
+<div class="parallax-container">
+    <div class="parallax">
+            <img src="{% static 'landing/images/bg01.jpg' %}"> 
+    </div>
+</div>
 
 
 <footer class="page-footer grey darken-4">
@@ -154,9 +163,10 @@ $( document ).ready(function(){
     $('.button-collapse').sideNav();
     $('.slider').slider({
         full_width: true,
-        height: 800,
+        height: 600,
     });
     $('.modal-trigger').leanModal();
+    $('.parallax').parallax();
 }) 
 </script>
 {% endblock %}

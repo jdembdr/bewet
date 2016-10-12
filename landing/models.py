@@ -6,7 +6,6 @@ class ExternalMailingListSubscriber(models.Model):
     email = EmailField(blank=False)
     subscription_date = DateField()
 
-
     def __str__(self):
         return self.email
 
