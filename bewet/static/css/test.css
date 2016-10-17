@@ -1,0 +1,75 @@
+html {
+    font-family: "quicksandbold";
+    font-weight: bold;
+}
+
+body {
+    display: flex;
+    min-height: 99vh;
+    flex-direction: column;
+}
+
+main {
+  flex: 0 0 auto;
+}
+
+div nav {
+  height: 100px;
+}
+
+nav a.brand-logo {
+  padding-left: 10%;
+}
+
+nav ul a:hover, .btn{
+    background-color: #51c0e8;
+}
+
+footer.page-footer{
+  margin-top: -1px;
+  padding-top: -1px;
+}
+
+.slider .indicators .indicator-item {
+    height: 9px;
+    width: 9px;
+}
+
+.slider .indicators {
+    bottom: 49;
+    z-index: 1;
+}
+/*
+.slider .indicators .indicator-item.active {
+    background-color: #ffffff;
+}
+
+
+
+.slider .slides li img {
+    opacity: -1.5;
+}
+
+*/
+.btn:hover {
+    background-color: black;
+}
+
+
+ul#nav-mobile {
+    vertical-align: bottom;
+}
+
+ul#nav-mobile li.nav-li {
+    display: inline-block;
+    bottom: 90%;
+}
+
+a.bewet-entry {
+    border-radius: 35px;
+    border: 1px solid #FFFFFF;
+    width: 200px;
+    text-align: center;
+    display: inline;
+    margin-right: 20px;
+}

@@ -2,183 +2,64 @@
 {% load staticfiles %}
 {% load i18n %}
 
-{% block header %}
-<link rel="stylesheet" href="{% static 'regata/css/regata.css' %}"/>
-{% endblock %}
 
 {% block content %}
-<div id="navbar">
-    <nav  class="grey darken-4">
-        <div class="nav-wrapper">
-            <a href="#" class="brand-logo" href="{% url 'homepage' %}" ><img height="100%" src="{% static 'regata/logo.png' %}"></a>
-            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li class="nav-li"><a class="bewet-entry"  href="{% url 'registration_register' %}">{% trans 'S\'inscrire' %}</a></li>
-                <li class="nav-li"><a class="modal-trigger bewet-entry" href="#modal_login">{% trans 'Se connecter' %}</a></li>
-            </ul>
-            <ul class="side-nav" id="mobile-demo">
-                <li><a href="{% url 'registration_register' %}">{% trans 'S\'inscrire' %}</a></li>
-                <li><a class="modal-trigger" href="#modal_login">{% trans 'Se connecter' %}</a></li>
-            </ul>
-        </div>
-    </nav>
-</div>
 
+<div name="slider">
 
-<!-- Modal Structure -->
-<div id="modal_login" class="modal modal-fixed-footer grey darken-4">
-    <div class="modal-content">
-        <h4>Modal Header</h4>
-        <p>
-        <ul>
-            {% if user and not user.is_anonymous %}
-            <li>
-                <a>Hello {{ user.get_full_name|default:user.username }}!</a>
-            </li>
-            <li>
-                <a href="{% url 'auth:logout' %}?next={{ request.path }}">Logout</a>
-            </li>
-            {% else %}
-            <li>
-                <a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}">Facebook login</a>
-            </li>
-            <li>
-                <a href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}">Google login</a>
-            </li>
-            <li>
-                <a href="{% url 'social:begin' 'twitter' %}?next={{ request.path }}">Twitter login</a>
-            </li>
-            <li>
-                <form method="post" name="login-form" action="{% url 'auth_login' %}">
-                    {% csrf_token %}
-                    <input placeholder="Email" type="email" name="email"></input>
-                    <input placeholder="Password" type="password" name="password"></input>
-                    <button type="submit">{% trans 'Connexion' %}</button>
-                </form>
-            </li>
-            {% endif %}
-        </ul>
-        </p>
-    </div>
-    <div class="modal-footer">
-        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">{% trans 'Accepter' %}</a>
+    <div style="background-color:transparent;" class="center-align">
+        <h3>Trouvez facilement un embarquement</h3>
+        <h4><font color="#00cfe8">Pleins </font>d'embarquements inscrits </h4>
+        </br>
+        <a class="btn"><span>Inscription gratuite</span></a>
+        <p>J'ai déjà un compte, <a class="modal-trigger white" href="#modal_login"><font color="#00cfe8">je me connecte ici.</font></a></p>
     </div>
 </div>
 
-<div class="carousel carousel-slider center" data-indicators="true">
-    <div class="carousel-fixed-item center">
-        <a class="btn waves-effect white grey-text darken-text-2">button</a>
-    </div>
-    <div class="carousel-item red white-text" href="#one!">
-        <h2>First Panel</h2>
-        <p class="white-text">This is your first panel</p>
-    </div>
-    <div class="carousel-item amber white-text" href="#two!">
-        <h2>Second Panel</h2>
-        <p class="white-text">This is your second panel</p>
-    </div>
-    <div class="carousel-item green white-text" href="#three!">
-        <h2>Third Panel</h2>
-        <p class="white-text">This is your third panel</p>
-    </div>
-    <div class="carousel-item blue white-text" href="#four!">
-        <h2>Fourth Panel</h2>
-        <p class="white-text">This is your fourth panel</p>
-    </div>
-</div>
-
-<div class="section white">
-    <div class="row container">
-        <div class="col s4">
-            <div class="center promo promo-example">
-                <i class="material-icons">flash_on</i>
-                <p class="promo-caption">Speeds up development</p>
-                <p class="light center">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components.</p>
-            </div>
-        </div>
-        <div class="col s4">
+<div class="section" style="background-color: 52c0e8;">
+    <div class="row ">
+        <div class="col s2 offset-s3">
             <div class="center promo promo-example">
                 <i class="material-icons">group</i>
-                <p class="promo-caption">User Experience Focused</p>
-                <p class="light center">By utilizing elements and principles of Material Design, we were able to create a framework that focuses on User Experience.</p>
+                <p class="promo-caption">{% trans 'Des équipiers,' %}</p>
+                <p class="light center">{% lorem p %}</p>
             </div>
         </div>
-        <div class="col s4">
-            <div class="center promo promo-example">
-                <i class="material-icons">settings</i>
-                <p class="promo-caption">Easy to work with</p>
-                <p class="light center">We have provided detailed documentation as well as specific code examples to help new users get started.</p>
-            </div>
-        </div>
-    </div>
-    <div class="row container">
-        <div class="col s8">
+        <div class="col s2">
             <div class="center promo promo-example">
                 <i class="material-icons">flash_on</i>
-                <p class="promo-caption">Speeds up development</p>
-                <p class="light center">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components.</p>
+                <font color="black"><p class="promo-caption">{% trans 'des bateaux,' %}</p></font>
+                <p class="light center">{% lorem p %}
             </div>
         </div>
+        <div class="col s2">
+            <div class="center promo promo-example">
+                <i class="material-icons">settings</i>
+                <p class="promo-caption">{% trans 'des régates' %}</p>
+                <p class="light center">{% lorem p %}
+            </div>
+        </div>
+    </div>
 </div>
-<div class="parallax-container">
-    <div class="parallax">
-            <img src="{% static 'landing/images/bg01.jpg' %}"> 
-    </div>
-</div>
-
-
-<footer class="page-footer grey darken-4">
-    <div class="row" >
-        <div class="col l2 s12">
-            <ul>
-                <li><a class="grey-text text-lighten-3" href="#!">Découvrir Bewet</a></li>
-                <li><a class="grey-text text-lighten-3" href="#!">Qui sommes-nous ?</a></li>
-            </ul>
-        </div>
-        <div class="col l2 s12">
-            <ul>
-                <li><a class="grey-text text-lighten-3" href="#!">Nous contacter</a></li>
-                <li><a class="grey-text text-lighten-3" href="#!">Application mobile</a></li>
-            </ul>
-        </div>
-        <div class="col l2 s12">
-            <ul>
-                <li><a class="grey-text text-lighten-3" href="#!">Crédits</a></li>
-                <li><a class="grey-text text-lighten-3" href="#!">Mentions légales</a></li>
-            </ul>
-        </div>
-        <div class="col l2 s12">
-            <ul>
-                <li><a class="grey-text text-lighten-3" href="#!">Plan du site</a></li>
-                <li><a class="grey-text text-lighten-3" href="#!">CGU/CGV</a></li>
-            </ul>
-        </div>
-        <div class="col l2 s12">
-            <ul>
-                <li class="grey-text text-lighten-3">Suivez-nous sur :</li>
-                <li>  <a href="#"><i class="fa fa-facebook-official fa-2x" aria-hidden="true"></i></a>
-                    <a href="#"><i class="fa fa-twitter-square fa-2x" aria-hidden="true"></i></a>
-                    <a href="#"><i class="fa fa-envelope fa-2x" aria-hidden="true"></i></a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div class="footer-copyright grey darken-4">
-        <div class="container">
-            © 2016 Copyright Bewet
-            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
-        </div>
-    </div>
-</footer>
 
 {% endblock %}
 
 {% block js %}
+
+<script type="text/javascript" src="{% static 'regata/caroussel.js' %}">
 <script type="text/javascript">
 $( document ).ready(function(){
-    $('.button-collapse').sideNav();
-    $('.carousel.carousel-slider').carousel({full_width: true});
+    $('.slider').slider({ full_width: true,});
     $('.modal-trigger').leanModal();
-}) 
+}); 
+
+var carroussel =	{
+    images: {
+        '{% static "landing/images/bg01.jpg" %}': 'center',
+        '{% static "landing/images/bg02.jpg" %}': 'center',
+        '{% static "landing/images/bg03.jpg" %}': 'center'
+    },
+};
+
 </script>
 {% endblock %}

@@ -20,10 +20,16 @@ from django.conf import settings
 import landing.views
 import regata.views
 
+from django.shortcuts import render
+import datetime
+def test(request):
+    return render(request, "test.html", {'time' : datetime.datetime.now()})
+
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^soon/', landing.views.comingsoon),
+    url(r'^test/', test),
     url(r'^$', regata.views.home, name="homepage"),
     # Other URL patterns ...
 
