@@ -24,7 +24,7 @@ import regata.views
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^soon/', landing.views.comingsoon),
-    url(r'^$', regata.views.home),
+    url(r'^$', regata.views.home, name="homepage"),
     # Other URL patterns ...
 
     url(r'^accounts/register/', regata.views.BewetRegistrationView.as_view(),
