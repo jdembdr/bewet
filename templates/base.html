@@ -12,11 +12,9 @@
         <link rel="stylesheet" href="{% static 'css/font-quicksand.css' %}"/>
         <link rel="stylesheet" href="{% static 'css/font-awesome.css' %}"/>
         <link rel="stylesheet" href="{% static 'css/jquery-ui.css' %}"/>
-        <link rel="stylesheet" href="{% static 'css/base.css' %}"/>
-        <link rel="stylesheet" href="{% static 'regata/css/regata.css' %}"/>
         <link rel="stylesheet" href="{% static 'materialize/css/materialize.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/base.css' %}"/>
         <link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons"/>
-        <link rel="stylesheet" href="{% static 'css/bewet.css' %}"/>
 
         {% block header %}
         {% endblock %}
@@ -25,9 +23,9 @@
         {% block navbar %}
 
         <div id="navbar">
-            <nav  class="grey darken-4">
+            <nav  class="black">
                 <div class="nav-wrapper">
-                    <a href="#" class="brand-logo" href="{% url 'homepage' %}" ><img height="100%" src="{% static 'regata/logo.png' %}"></a>
+                    <a href="#" class="brand-logo" href="{% url 'homepage' %}" ><img src="{% static 'icons/logo_header.png' %}"></a>
                     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
                         <li class="nav-li"><a href="{% url 'registration_register' %}">{% trans 'S\'inscrire' %}</a></li>
@@ -89,47 +87,40 @@
 
         {% block footer %}
 
-        <footer class="page-footer grey darken-4">
-            <div class="row" >
-                <div class="col l2 s12">
-                    <ul>
-                        <li><a class="grey-text text-lighten-3" href="#!">Découvrir Bewet</a></li>
-                        <li><a class="grey-text text-lighten-3" href="#!">Qui sommes-nous ?</a></li>
-                    </ul>
+        <footer class="page-footer black">
+            <div class="row center white-text" >
+                <div class="col s12">
+                    <a class="white-text" href="#!">Découvrir Bewet</a> |
+                    <a class="white-text" href="#!">Qui sommes-nous ?</a> |
+                    <a class="white-text" href="#!">Aide</a> |
+                    <a class="white-text" href="#!">Nous contacter</a>
                 </div>
-                <div class="col l2 s12">
-                    <ul>
-                        <li><a class="grey-text text-lighten-3" href="#!">Nous contacter</a></li>
-                        <li><a class="grey-text text-lighten-3" href="#!">Application mobile</a></li>
-                    </ul>
+
+                <div class="col s12">
+                    <img src="{% static 'icons/logo_footer.png' %}" style="padding:30px;"></img>
                 </div>
-                <div class="col l2 s12">
+
+                <div class="col s12">
+                    <a class="white-text">Suivez-nous sur :
                     <ul>
-                        <li><a class="grey-text text-lighten-3" href="#!">Crédits</a></li>
-                        <li><a class="grey-text text-lighten-3" href="#!">Mentions légales</a></li>
-                    </ul>
-                </div>
-                <div class="col l2 s12">
-                    <ul>
-                        <li><a class="grey-text text-lighten-3" href="#!">Plan du site</a></li>
-                        <li><a class="grey-text text-lighten-3" href="#!">CGU/CGV</a></li>
-                    </ul>
-                </div>
-                <div class="col l2 s12">
-                    <ul>
-                        <li class="grey-text text-lighten-3">Suivez-nous sur :</li>
-                        <li>  <a href="#"><i class="fa fa-facebook-official fa-2x" aria-hidden="true"></i></a>
-                            <a href="#"><i class="fa fa-twitter-square fa-2x" aria-hidden="true"></i></a>
-                            <a href="#"><i class="fa fa-envelope fa-2x" aria-hidden="true"></i></a>
+                        <li>  
+                            <a class="white-text"  href="#"><i class="fa fa-facebook-official fa-2x" aria-hidden="true"></i></a>
+                            <a class="white-text"  href="#"><i class="fa fa-twitter-square fa-2x" aria-hidden="true"></i></a>
+                            <a class="white-text"  href="#"><i class="fa fa-envelope fa-2x" aria-hidden="true"></i></a>
                         </li>
                     </ul>
                 </div>
-            </div>
-            <div class="footer-copyright grey darken-4">
-                <div class="container">
-                    © 2016 Copyright Bewet
-                    <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+                <hr style="width:43px; height:3px; background-color: #ffffff"/>
+
+                <div class="col s12 grey-text text-darken-2">
+                        <a class="grey-text text-darken-2" href="#!">Crédits</a> | 
+                        <a class="grey-text text-darken-2" href="#!">Mentions légales</a> | 
+                        <a class="grey-text text-darken-2" href="#!">Plan du site</a> | 
+                        <a class="grey-text text-darken-2" href="#!">CGU/CGV</a>
                 </div>
+            </div>
+            <div class="footer-copyright right">
+                    © 2016 Copyright Bewet
             </div>
         </footer>
         {% endblock %}

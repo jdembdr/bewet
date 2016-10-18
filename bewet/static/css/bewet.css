@@ -17,33 +17,6 @@ footer.page-footer{
   padding-top: -1px;
 }
 
-.slider .indicators .indicator-item.active {
-    background-color: #51c0e8;
-}
-
-.slider .indicators {
-    bottom: 49;
-    z-index: 1;
-}
-
-.slider .indicators .indicator-item {
-    height: 9px;
-    width: 9px;
-}
-
-.slider .slides li img {
-    opacity: -1.5;
-}
-
-.slider {
-    height: 599px;
-}
-
-.btn:hover {
-    background-color: black;
-}
-
-
 ul#nav-mobile {
     vertical-align: bottom;
 }

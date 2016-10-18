@@ -1,6 +1,5 @@
 html {
     font-family: "quicksandbold";
-    font-weight: bold;
 }
 
 body {
@@ -13,12 +12,35 @@ main {
   flex: 0 0 auto;
 }
 
+div nav {
+  height: 90px;
+}
+
+nav a.brand-logo {
+  padding-left: 10%;
+  position: relative;
+}
+
+
+footer.page-footer{
+  margin-top: -1px;
+  padding-top: -1px;
+}
+
+ul#nav-mobile {
+    vertical-align: bottom;
+}
+
+ul#nav-mobile li.nav-li {
+    display: inline-block;
+    bottom: 90%;
+}
 
 nav div.nav-wrapper ul#nav-mobile {
     vertical-align: bottom;
     margin-right: 100;
     position: relative;
-    top: 54%;
+    top: 44%;
 }
 
 nav div.nav-wrapper ul#nav-mobile a{
