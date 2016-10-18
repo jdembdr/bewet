@@ -1,0 +1,17 @@
+div.slider {
+    height:480px;
+}
+
+div.slider ul.indicators {
+    z-index: 2;
+    bottom: 45px;
+}
+
+.slider .indicators .indicator-item{
+    width: 9px;
+    height: 9px;
+}
+
+.slider .indicators .indicator-item.active {
+    background-color: #00c1ea;
+}
