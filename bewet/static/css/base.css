@@ -1,0 +1,24 @@
+nav {
+    height: 100px;
+}
+
+
+nav div.nav-wrapper ul#nav-mobile {
+    vertical-align: bottom;
+    margin-right: 100;
+    position: relative;
+    top: 54%;
+}
+
+nav div.nav-wrapper ul#nav-mobile a{
+    border-radius: 35px;
+    border: 1px solid #FFFFFF;
+    width: 200px;
+    text-align: center;
+    display: inline;
+    margin-right: 20px;
+}
+
+nav div.nav-wrapper ul#nav-mobile a:hover{
+    background-color: #00c1ea;
+}

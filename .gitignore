@@ -2,8 +2,7 @@
 *.pyc
 .*swp
 db.sqlite3
-static_root
-static
+/static_root
 /media/
 /tmp/
 /openshift/
