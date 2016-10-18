@@ -12,7 +12,9 @@
         <link rel="stylesheet" href="{% static 'css/font-quicksand.css' %}"/>
         <link rel="stylesheet" href="{% static 'css/font-awesome.css' %}"/>
         <link rel="stylesheet" href="{% static 'css/jquery-ui.css' %}"/>
-        <link rel="stylesheet" href="{% static 'css/materialize.css' %}"/>
+        <link rel="stylesheet" href="{% static 'css/base.css' %}"/>
+        <link rel="stylesheet" href="{% static 'regata/css/regata.css' %}"/>
+        <link rel="stylesheet" href="{% static 'materialize/css/materialize.min.css' %}">
         <link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons"/>
         <link rel="stylesheet" href="{% static 'css/bewet.css' %}"/>
 
@@ -20,16 +22,16 @@
         {% endblock %}
     </head>
     <body>
-
         {% block navbar %}
+
         <div id="navbar">
             <nav  class="grey darken-4">
                 <div class="nav-wrapper">
                     <a href="#" class="brand-logo" href="{% url 'homepage' %}" ><img height="100%" src="{% static 'regata/logo.png' %}"></a>
                     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        <li class="nav-li"><a class="bewet-entry"  href="{% url 'registration_register' %}">{% trans 'S\'inscrire' %}</a></li>
-                        <li class="nav-li"><a class="modal-trigger bewet-entry" href="#modal_login">{% trans 'Se connecter' %}</a></li>
+                        <li class="nav-li"><a href="{% url 'registration_register' %}">{% trans 'S\'inscrire' %}</a></li>
+                        <li class="nav-li"><a class="modal-trigger" href="#modal_login">{% trans 'Se connecter' %}</a></li>
                     </ul>
                     <ul class="side-nav" id="mobile-demo">
                         <li><a href="{% url 'registration_register' %}">{% trans 'S\'inscrire' %}</a></li>
@@ -81,11 +83,12 @@
         </div>
         {% endblock %}
 
+
         {% block content %}
         {% endblock %}
 
-
         {% block footer %}
+
         <footer class="page-footer grey darken-4">
             <div class="row" >
                 <div class="col l2 s12">
@@ -133,9 +136,8 @@
 
         <script type="text/javascript" src="{% static 'js/jquery-2.2.3.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/jquery-ui.js' %}"></script>
-        <script type="text/javascript" src="{% static 'js/materialize.js' %}"></script>
-
-        <script>
+        <script type="text/javascript" src="{% static 'materialize/js/materialize.min.js' %}"></script>
+        <script type="text/javascript" >
 window.fbAsyncInit = function() {
     FB.init({
         appId      : '252475625125931',
@@ -152,10 +154,10 @@ window.fbAsyncInit = function() {
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 
-
 $( document ).ready(function(){
     $('.button-collapse').sideNav();
-});
+    $('.modal-trigger').leanModal();
+}) 
         </script>
 
         {% block js %}

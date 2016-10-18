@@ -48,6 +48,7 @@ THIRD_APPS = (
 LOCAL_APPS = (
         'landing',
         'regata',
+        'sandbox',
         )
 
 INSTALLED_APPS = DEFAULT_APPS + THIRD_APPS + LOCAL_APPS

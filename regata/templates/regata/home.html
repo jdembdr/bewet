@@ -2,41 +2,64 @@
 {% load staticfiles %}
 {% load i18n %}
 
+{% block header %}
+{% endblock %}
 
 {% block content %}
 
-<div name="slider">
-
-    <div style="background-color:transparent;" class="center-align">
-        <h3>Trouvez facilement un embarquement</h3>
-        <h4><font color="#00cfe8">Pleins </font>d'embarquements inscrits </h4>
-        </br>
-        <a class="btn"><span>Inscription gratuite</span></a>
-        <p>J'ai déjà un compte, <a class="modal-trigger white" href="#modal_login"><font color="#00cfe8">je me connecte ici.</font></a></p>
+<div class="carousel carousel-slider center" data-indicators="true">
+    <div class="carousel-fixed-item center">
+        <a class="btn waves-effect white grey-text darken-text-2">button</a>
+    </div>
+    <div class="carousel-item red white-text" href="#one!" style="background-image:url('{% static "regata/cata_sport.jpg" %}')">
+        <h2>First Panel</h2>
+        <p class="white-text">This is your first panel</p>
+    </div>
+    <div class="carousel-item amber white-text" href="#two!">
+        <h2>Second Panel</h2>
+        <p class="white-text">This is your second panel</p>
+    </div>
+    <div class="carousel-item green white-text" href="#three!">
+        <h2>Third Panel</h2>
+        <p class="white-text">This is your third panel</p>
+    </div>
+    <div class="carousel-item blue white-text" href="#four!">
+        <h2>Fourth Panel</h2>
+        <p class="white-text">This is your fourth panel</p>
     </div>
 </div>
 
-<div class="section" style="background-color: 52c0e8;">
-    <div class="row ">
-        <div class="col s2 offset-s3">
+<div class="section" style="background-color: #00c1ea;">
+    <div class="row">
+        <div class="col s6 m4 l2 offset-l3">
             <div class="center promo promo-example">
-                <i class="material-icons">group</i>
-                <p class="promo-caption">{% trans 'Des équipiers,' %}</p>
-                <p class="light center">{% lorem p %}</p>
+                <img src="{% static 'regata/icons/picto_bateau_home_page.png' %}"></img>
+                <p class="promo-caption black-text">{% trans 'Des bateaux,' %}</p>
+                <p class="light center white-text">{% lorem %}</p>
             </div>
         </div>
-        <div class="col s2">
+        <div class="col s6 m4 l2">
             <div class="center promo promo-example">
-                <i class="material-icons">flash_on</i>
-                <font color="black"><p class="promo-caption">{% trans 'des bateaux,' %}</p></font>
-                <p class="light center">{% lorem p %}
+                <img src="{% static 'regata/icons/picto_equipier_home_page.png' %}"></img>
+                <p class="promo-caption black-text">{% trans 'des équipiers,' %}</p>
+                <p class="light center white-text">{% lorem %}</p>
             </div>
         </div>
-        <div class="col s2">
+        <div class="col s12 m4 l2">
             <div class="center promo promo-example">
-                <i class="material-icons">settings</i>
-                <p class="promo-caption">{% trans 'des régates' %}</p>
-                <p class="light center">{% lorem p %}
+                <img src="{% static 'regata/icons/picto_regate_home_page.png' %}"></img>
+                <p class="promo-caption black-text">{% trans 'des régates.' %}</p>
+                <p class="light center white-text">{% lorem %}</p>
+            </div>
+        </div>
+    </div>
+    <hr style="width:80px; height:3px; background: #fff"/>
+    <div class="row">
+        <div class="col s12 m6 offset-m3 l4 offset-l4">
+            <div class="center">
+                <p class="white-text">{% trans 'Comment régater avec Bewet ?' %}</p>
+                <p class="center black-text">{% trans 'Voir la vidéo' %}</p>
+                <a href="{% static 'regata/medias/presentation.swf' %}"><img src="{% static 'regata/icons/bouton_play_video.png' %}"></img></a>
             </div>
         </div>
     </div>
@@ -46,20 +69,9 @@
 
 {% block js %}
 
-<script type="text/javascript" src="{% static 'regata/caroussel.js' %}">
 <script type="text/javascript">
 $( document ).ready(function(){
-    $('.slider').slider({ full_width: true,});
-    $('.modal-trigger').leanModal();
-}); 
-
-var carroussel =	{
-    images: {
-        '{% static "landing/images/bg01.jpg" %}': 'center',
-        '{% static "landing/images/bg02.jpg" %}': 'center',
-        '{% static "landing/images/bg03.jpg" %}': 'center'
-    },
-};
-
+    $('.carousel.carousel-slider').carousel({full_width: true});
+}) 
 </script>
 {% endblock %}

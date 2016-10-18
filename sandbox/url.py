@@ -18,10 +18,9 @@ from django.conf.urls import include, url, patterns
 from django.contrib import admin
 from django.conf import settings
 
-from .views import video
-
+import views
 
 urlpatterns = [
-        url('video', video, name='video'),
+    url('carousel', views.carousel, name='carousel'),
 ]
 
