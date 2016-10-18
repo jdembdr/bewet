@@ -1,5 +1,16 @@
-nav {
-    height: 100px;
+html {
+    font-family: "quicksandbold";
+    font-weight: bold;
+}
+
+body {
+    display: flex;
+    min-height: 99vh;
+    flex-direction: column;
+}
+
+main {
+  flex: 0 0 auto;
 }
 
 
