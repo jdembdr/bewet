@@ -15,3 +15,18 @@ div.slider ul.indicators {
 .slider .indicators .indicator-item.active {
     background-color: #00c1ea;
 }
+
+a#separator{
+    border-radius: 35px;
+    border: 1px solid #ffffff;
+    display: inline;
+    background-color: #ffffff;
+    color: #000000;
+    position: relative;
+    bottom: 25px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    z-index: 2;
+}
