@@ -36,4 +36,6 @@ class BewetRegistrationView(RegistrationView):
                                  request=self.request)
         return user
 
+def video(request):
+    return render(request,template_name='regata/video.html', context=None)
 
