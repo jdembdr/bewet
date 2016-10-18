@@ -16,9 +16,19 @@ div.slider ul.indicators {
     background-color: #00c1ea;
 }
 
+.slider .slides li>img{
+    -webkit-filter: brightness(40%); /* Chrome, Safari, Opera */
+    filter: brightness(40%);
+}
+
+a.bewet-btn{
+    border-radius: 35px;
+    background-color: #00c1ea;
+    color: #ffffff;
+}
+
 a#separator{
     border-radius: 35px;
-    border: 1px solid #ffffff;
     display: inline;
     background-color: #ffffff;
     color: #000000;
@@ -29,4 +39,22 @@ a#separator{
     padding-top: 5px;
     padding-bottom: 5px;
     z-index: 2;
+    font-size:1.2em
+}
+
+p.promo-caption{
+    font-size:1.2em;
+    font-weight: bold;
+    color: #000000;
+}
+
+p.promo-desc{
+    font-size:1em;
+    font-weight: thin;
+    color:#ffffff;
+}
+
+div.promo img:hover{
+    -webkit-filter: drop-shadow(1px 1px 10px #ffffff); /* Chrome, Safari, Opera */
+    filter: drop-shadow(1px 1px 10px #ffffff);
 }

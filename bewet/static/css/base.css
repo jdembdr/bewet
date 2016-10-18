@@ -6,6 +6,7 @@ body {
     display: flex;
     min-height: 99vh;
     flex-direction: column;
+    font-size: 100%;
 }
 
 main {
