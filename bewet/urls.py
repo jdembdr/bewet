@@ -33,6 +33,7 @@ urlpatterns = [
     url('', include('social.apps.django_app.urls', namespace='social')),
     url('', include('django.contrib.auth.urls', namespace='auth')),
     url('', include('regata.urls', namespace='regata')),
+    url('', include('sandbox.urls', namespace='sandbox')),
 ]
 
 
