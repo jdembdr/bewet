@@ -21,6 +21,18 @@ div.slider ul.indicators {
     filter: brightness(40%);
 }
 
+a.bewet-google-signin-btn{
+    border-radius: 35px;
+    background-color: #00c1ea;
+    color: #ffffff;
+}
+
+a.bewet-facebook-signin-btn{
+    border-radius: 35px;
+    background-color: #00c1ea;
+    color: #ffffff;
+}
+
 a.bewet-btn{
     border-radius: 35px;
     background-color: #00c1ea;
@@ -57,5 +69,11 @@ p.promo-desc{
 div.promo img:hover{
     -webkit-filter: drop-shadow(1px 1px 10px #ffffff); /* Chrome, Safari, Opera */
     filter: drop-shadow(1px 1px 10px #ffffff);
+}
+
+a.video-modal-trigger img:hover{
+    -webkit-filter: drop-shadow(1px 1px 2px #000000); /* Chrome, Safari, Opera */
+    filter: drop-shadow(1px 1px 2px #000000);
+
 }
 

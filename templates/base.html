@@ -27,6 +27,14 @@
                 <div class="nav-wrapper">
                     <a href="#" class="brand-logo" href="{% url 'homepage' %}" ><img src="{% static 'icons/logo_header.png' %}"></a>
                     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                    {% if user and not user.is_anonymous %}
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <li>  <a>Hello {{ user.get_full_name|default:user.username }}!</a>  </li>
+                    </ul>
+                    <ul class="side-nav" id="mobile-demo">
+                        <li>  <a>Hello {{ user.get_full_name|default:user.username }}!</a>  </li>
+                    </ul>
+                    {% else %}
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
                         <li class="nav-li"><a href="{% url 'registration_register' %}">{% trans 'S\'inscrire' %}</a></li>
                         <li class="nav-li"><a class="modal-trigger" href="#modal_login">{% trans 'Se connecter' %}</a></li>
@@ -35,48 +43,37 @@
                         <li><a href="{% url 'registration_register' %}">{% trans 'S\'inscrire' %}</a></li>
                         <li><a class="modal-trigger" href="#modal_login">{% trans 'Se connecter' %}</a></li>
                     </ul>
+                    {% endif %}
                 </div>
             </nav>
         </div>
 
 
         <!-- Modal Structure -->
-        <div id="modal_login" class="modal modal-fixed-footer grey darken-4">
+        <div id="modal_login" class="modal modal-fixed-footer">
             <div class="modal-content">
-                <h4>Modal Header</h4>
+                <h4>Connectez-vous</h4>
                 <p>
-                <ul>
-                    {% if user and not user.is_anonymous %}
+                <ul class="center">
                     <li>
-                        <a>Hello {{ user.get_full_name|default:user.username }}!</a>
+                        <a class="bewet-btn btn" href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}"><img src="{% static 'icons/external/FB-f-Logo__white_29.png' %}"/>Connexion avec Facebook</a>
                     </li>
                     <li>
-                        <a href="{% url 'auth:logout' %}?next={{ request.path }}">Logout</a>
-                    </li>
-                    {% else %}
-                    <li>
-                        <a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}">Facebook login</a>
+                        <a class="bewet-btn btn" href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}"><img src="{% static 'icons/external/btn_google_signin_dark_normal_hdpi.9.png' %}"/>Connexion avec Google</a>
                     </li>
                     <li>
-                        <a href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}">Google login</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'social:begin' 'twitter' %}?next={{ request.path }}">Twitter login</a>
+                        <span class="center"> ou </span>
                     </li>
                     <li>
                         <form method="post" name="login-form" action="{% url 'auth_login' %}">
                             {% csrf_token %}
                             <input placeholder="Email" type="email" name="email"></input>
-                            <input placeholder="Password" type="password" name="password"></input>
-                            <button type="submit">{% trans 'Connexion' %}</button>
+                            <input placeholder="Mot de passe" type="password" name="password"></input>
+                            <button type="submit">{% trans 'Valider' %}</button>
                         </form>
                     </li>
-                    {% endif %}
                 </ul>
                 </p>
-            </div>
-            <div class="modal-footer">
-                <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">{% trans 'Accepter' %}</a>
             </div>
         </div>
         {% endblock %}
