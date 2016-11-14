@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="{% static 'css/jquery-ui.css' %}"/>
         <link rel="stylesheet" href="{% static 'materialize/css/materialize.min.css' %}">
         <link rel="stylesheet" href="{% static 'css/base.css' %}"/>
+        <link rel="stylesheet" href="{% static 'css/bewet.css' %}"/>
         <link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons"/>
 
         {% block header %}
@@ -48,34 +49,36 @@
             </nav>
         </div>
 
+        {% if not user or user.is_anonymous %}
 
         <!-- Modal Structure -->
-        <div id="modal_login" class="modal modal-fixed-footer">
+        <div id="modal_login" class="modal">
             <div class="modal-content">
-                <h4>Connectez-vous</h4>
+                <span class="bewet-modal-title" >Connectez-vous</span>
                 <p>
                 <ul class="center">
                     <li>
-                        <a class="bewet-btn btn" href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}"><img src="{% static 'icons/external/FB-f-Logo__white_29.png' %}"/>Connexion avec Facebook</a>
+                        <a class="btn bewet-connect bewet-facebook-connect" href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}"><img class="bewet-connect-logo" src="{% static 'icons/external/FB-f-Logo__white_29.png' %}"/><span style="margin-left:20px">Connexion avec Facebook</span></a>
                     </li>
-                    <li>
-                        <a class="bewet-btn btn" href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}"><img src="{% static 'icons/external/btn_google_signin_dark_normal_hdpi.9.png' %}"/>Connexion avec Google</a>
+                    <li style="margin-top:10px;">
+                        <a class="btn bewet-connect bewet-google-connect" href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}"><img class="bewet-connect-logo" src="{% static 'icons/external/btn_google_signin_dark_normal_hdpi.9.png' %}"/><span style="margin-left:20px">Connexion avec Google</span></a>
                     </li>
-                    <li>
-                        <span class="center"> ou </span>
+                    <li  style="margin:20px;">
+                        <span class="center" > ou </span>
                     </li>
                     <li>
                         <form method="post" name="login-form" action="{% url 'auth_login' %}">
                             {% csrf_token %}
                             <input placeholder="Email" type="email" name="email"></input>
                             <input placeholder="Mot de passe" type="password" name="password"></input>
-                            <button type="submit">{% trans 'Valider' %}</button>
+                            <button class="btn bewet-btn " type="submit">{% trans 'Valider' %}</button>
                         </form>
                     </li>
                 </ul>
                 </p>
             </div>
         </div>
+        {% endif %}
         {% endblock %}
 
 
@@ -99,25 +102,25 @@
 
                 <div class="col s12">
                     <a class="white-text">Suivez-nous sur :
-                    <ul>
-                        <li>  
-                            <a class="white-text"  href="#"><i class="fa fa-facebook-official fa-2x" aria-hidden="true"></i></a>
-                            <a class="white-text"  href="#"><i class="fa fa-twitter-square fa-2x" aria-hidden="true"></i></a>
-                            <a class="white-text"  href="#"><i class="fa fa-envelope fa-2x" aria-hidden="true"></i></a>
-                        </li>
-                    </ul>
+                        <ul>
+                            <li>  
+                                <a class="white-text"  href="#"><i class="fa fa-facebook-official fa-2x" aria-hidden="true"></i></a>
+                                <a class="white-text"  href="#"><i class="fa fa-twitter-square fa-2x" aria-hidden="true"></i></a>
+                                <a class="white-text"  href="#"><i class="fa fa-envelope fa-2x" aria-hidden="true"></i></a>
+                            </li>
+                        </ul>
                 </div>
                 <hr style="width:43px; height:3px; background-color: #ffffff"/>
 
                 <div class="col s12 grey-text text-darken-2">
-                        <a class="grey-text text-darken-2" href="#!">Crédits</a> | 
-                        <a class="grey-text text-darken-2" href="#!">Mentions légales</a> | 
-                        <a class="grey-text text-darken-2" href="#!">Plan du site</a> | 
-                        <a class="grey-text text-darken-2" href="#!">CGU/CGV</a>
+                    <a class="grey-text text-darken-2" href="#!">Crédits</a> | 
+                    <a class="grey-text text-darken-2" href="#!">Mentions légales</a> | 
+                    <a class="grey-text text-darken-2" href="#!">Plan du site</a> | 
+                    <a class="grey-text text-darken-2" href="#!">CGU/CGV</a>
                 </div>
             </div>
             <div class="footer-copyright right">
-                    © 2016 Copyright Bewet
+                © 2016 Copyright Bewet
             </div>
         </footer>
         {% endblock %}
@@ -125,25 +128,11 @@
         <script type="text/javascript" src="{% static 'js/jquery-2.2.3.js' %}"></script>
         <script type="text/javascript" src="{% static 'materialize/js/materialize.min.js' %}"></script>
         <script type="text/javascript" >
-window.fbAsyncInit = function() {
-    FB.init({
-        appId      : '252475625125931',
-        xfbml      : true,
-        version    : 'v2.6'
-    });
-};
-
-(function(d, s, id){
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) {return;}
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js";
-    fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
-
 $( document ).ready(function(){
     $('.button-collapse').sideNav();
-    $('.modal-trigger').leanModal();
+    $('.modal-trigger').leanModal({
+      ending_top: '30%', // Ending top style attribute
+    });
 }) 
         </script>
 

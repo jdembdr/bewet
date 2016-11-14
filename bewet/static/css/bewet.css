@@ -1,6 +1,26 @@
 
 div nav {
-  height: 100px;
+  height: 90px;
+}
+
+nav div.nav-wrapper ul#nav-mobile {
+    vertical-align: bottom;
+    margin-right: 100;
+    position: relative;
+    top: 44%;
+}
+
+nav div.nav-wrapper ul#nav-mobile a{
+    border-radius: 35px;
+    border: 1px solid #FFFFFF;
+    width: 200px;
+    text-align: center;
+    display: inline;
+    margin-right: 20px;
+}
+
+nav div.nav-wrapper ul#nav-mobile a:hover{
+    background-color: #00c1ea;
 }
 
 nav a.brand-logo {
@@ -17,6 +37,13 @@ footer.page-footer{
   padding-top: -1px;
 }
 
+.modal {
+    border-radius: 35px;
+    max-width: 500px;
+    width: 35%;
+    top: 35%;
+}
+
 ul#nav-mobile {
     vertical-align: bottom;
 }
@@ -24,6 +51,12 @@ ul#nav-mobile {
 ul#nav-mobile li.nav-li {
     display: inline-block;
     bottom: 90%;
+}
+
+a.bewet-btn{
+    border-radius: 35px;
+    background-color: #00c1ea;
+    color: #ffffff;
 }
 
 a.bewet-entry {
@@ -34,3 +67,42 @@ a.bewet-entry {
     display: inline;
     margin-right: 20px;
 }
+
+
+a.bewet-connect {
+    border-radius: 35px;
+    max-width: 80%;
+    text-align: center;
+    text-transform: none;
+    box-shadow: none;
+    width:400px;
+    font-weight: normal;
+    font-size: 90%
+}
+
+img.bewet-connect-logo {
+    vertical-align: middle;
+    height: 90%;
+}
+
+a.bewet-google-connect, a.bewet-google-connect:hover{
+    background-color: #4285f4;
+    color: #ffffff;
+}
+
+a.bewet-facebook-connect,  a.bewet-facebook-connect:hover{
+    background-color: #00506b;
+    color: #ffffff;
+}
+
+div.modal-content {
+    text-align: center;
+    top: 100px;
+}
+
+span.bewet-modal-title {
+    color: #00c1ea;
+}
+
+
+
