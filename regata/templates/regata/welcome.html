@@ -113,7 +113,7 @@ $( document ).ready(function(){
       starting_top: '4%', // Starting top style attribute
       ending_top: '10%', // Ending top style attribute
       ready: function() {
-          $('#modal_video').load('{% url 'regata:video' %}'); }, // Callback for Modal open
+          $('#modal_video').load('/video'); }, // Callback for Modal open
       complete: function() {} // Callback for Modal close
     }
   );

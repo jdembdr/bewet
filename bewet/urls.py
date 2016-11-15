@@ -20,6 +20,7 @@ from django.conf import settings
 import landing.views
 import regata.views
 
+
 from django.shortcuts import render
 import datetime
 def test(request):

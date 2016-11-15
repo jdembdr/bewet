@@ -1,9 +1,13 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
+from django.views.generic import TemplateView, UpdateView, DetailView
 
 from registration.backends.hmac.views import RegistrationView
 from registration import signals
 
+
+from .models import Regata
+from django.contrib.auth.models import User
 # Create your views here.
 
 def home(request):
@@ -39,3 +43,11 @@ class BewetRegistrationView(RegistrationView):
 def video(request):
     return render(request, template_name='regata/video.html', context=None)
 
+class WelcomeView(TemplateView):
+    pass
+
+class UpdateProfileView(UpdateView):
+    model=User
+
+class RegataView(DetailView):
+    model = Regata

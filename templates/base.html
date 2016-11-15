@@ -30,10 +30,20 @@
                     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                     {% if user and not user.is_anonymous %}
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        <li>  <a>Hello {{ user.get_full_name|default:user.username }}!</a>  </li>
+                        <li> 
+                            <div class="chip">
+                                <img src="images/yuna.jpg" alt="Contact Person">
+                                {{ user.get_full_name|default:user.username }}
+                            </div>
+                        </li>
                     </ul>
                     <ul class="side-nav" id="mobile-demo">
-                        <li>  <a>Hello {{ user.get_full_name|default:user.username }}!</a>  </li>
+                        <li> 
+                            <div class="chip">
+                                <img src="images/yuna.jpg" alt="Contact Person">
+                                {{ user.get_full_name|default:user.username }}
+                            </div>
+                        </li>
                     </ul>
                     {% else %}
                     <ul id="nav-mobile" class="right hide-on-med-and-down">

@@ -19,9 +19,12 @@ from django.contrib import admin
 from django.conf import settings
 
 from .views import video
+from .views import WelcomeView, UpdateProfileView
 
 
 urlpatterns = [
         url('video', video, name='video'),
+        url('welcome/', video, name='welcome'),
+        url('profile/', UpdateProfileView, name='welcome'),
 ]
 
