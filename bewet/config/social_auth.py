@@ -18,7 +18,7 @@ ACCOUNT_ACTIVATION_DAYS=7
 
 #----------------
 # registration config
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/welcome/'
 
 
 SOCIAL_AUTH_TWITTER_KEY = 'ZQJnkKF5HBvBUXdjftK7YJk25'

@@ -44,7 +44,7 @@ def video(request):
     return render(request, template_name='regata/video.html', context=None)
 
 class WelcomeView(TemplateView):
-    pass
+    template_name = "regata/welcome.html"
 
 class UpdateProfileView(UpdateView):
     model=User

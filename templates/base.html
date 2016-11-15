@@ -29,11 +29,11 @@
                     <a href="#" class="brand-logo" href="{% url 'homepage' %}" ><img src="{% static 'icons/logo_header.png' %}"></a>
                     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                     {% if user and not user.is_anonymous %}
-                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <ul id="nav-mobile" class="right hide-on-med-and-down" style="top:10%;">
                         <li> 
-                            <div class="chip">
-                                <img src="images/yuna.jpg" alt="Contact Person">
-                                {{ user.get_full_name|default:user.username }}
+                            <div class="avatar-frame">
+                                <img src="{% static 'icons/avatar/default.png' %}"/>
+                                <span>{{ user.first_name|default:user.username }}</span>
                             </div>
                         </li>
                     </ul>

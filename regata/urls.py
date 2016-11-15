@@ -24,7 +24,7 @@ from .views import WelcomeView, UpdateProfileView
 
 urlpatterns = [
         url('video', video, name='video'),
-        url('welcome/', video, name='welcome'),
-        url('profile/', UpdateProfileView, name='welcome'),
+        url('welcome/', WelcomeView.as_view(), name='welcome'),
+        url('profile/', UpdateProfileView.as_view(), name='welcome'),
 ]
 
