@@ -16,6 +16,7 @@ class CrewUpdateView(UpdateView):
     template_name = "regata/crew_update.html"
     model = Crew
     form_class = CrewProfileForm
+    success_url = '#'
 
     def get_object(self):
         return Crew.objects.get(user=self.request.user)
