@@ -18,7 +18,7 @@ class CrewUpdateView(UpdateView):
     form_class = CrewProfileForm
 
     def get_object(self):
-        return Crew.objects.filter(pk=self.request.user.id)
+        return Crew.objects.get(user=self.request.user)
 
 
 

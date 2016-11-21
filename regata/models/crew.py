@@ -2,6 +2,15 @@ from __future__ import unicode_literals
 from django.utils.translation import ugettext as _
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+
+def create_profile( sender, **kwargs):
+    user = kwargs["instance"]
+    if kwargs["created"]:
+        userProfile = Crew(user=user)
+        userProfile.save()
+
+post_save.connect(create_profile, sender=User)
 
 # Create your models here.
 class CrewRole(models.Model):
@@ -53,23 +62,23 @@ class Crew(models.Model):
             ( FRONTSAIL, _('frontsail')),
             )
 
-    picture = models.ImageField()
-    birth_date = models.DateField()
+    picture = models.ImageField(blank=True, null=True)
+    birth_date = models.DateField(blank=True, null=True)
     gender = models.CharField(
             max_length=3,
             blank=True,
-            choices=GENDER_CHOICE,
-            default=None)
+            null=True,
+            choices=GENDER_CHOICE)
 
-    size = models.IntegerField()
-    weight = models.IntegerField()
-    licence_id = models.IntegerField()
+    size = models.IntegerField(blank=True, null=True)
+    weight = models.IntegerField(blank=True, null=True)
+    licence_id = models.IntegerField(blank=True, null=True)
 
     level = models.CharField(
             max_length=3,
             choices=LEVEL_CHOICE,
-            default=BEGINNER)
+            default=BEGINNER, null=True)
 
-    language = models.ManyToManyField(Language)
+    language = models.ManyToManyField(Language, blank=True)
     user = models.OneToOneField(User)
 
