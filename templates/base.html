@@ -26,15 +26,17 @@
         <div id="navbar">
             <nav  class="black">
                 <div class="nav-wrapper">
-                    <a href="#" class="brand-logo" href="{% url 'homepage' %}" ><img src="{% static 'icons/logo_header.png' %}"></a>
+                    <a class="brand-logo" href="{% url 'homepage' %}" ><img src="{% static 'icons/logo_header.png' %}"></a>
                     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                     {% if user and not user.is_anonymous %}
                     <ul id="nav-mobile" class="right hide-on-med-and-down" style="top:10%;">
                         <li> 
-                            <div class="avatar-frame">
-                                <img src="{% static 'icons/avatar/default.png' %}"/>
-                                <span>{{ user.first_name|default:user.username }}</span>
-                            </div>
+                            <a href="{% url 'regata:profile' %}">
+                                <div class="avatar-frame">
+                                    <img src="{% static 'icons/avatar/default.png' %}"/>
+                                    <span style="line-height:initial;">{{ user.first_name|default:user.username }}</span>
+                                </div>
+                            </a>
                         </li>
                     </ul>
                     <ul class="side-nav" id="mobile-demo">
@@ -47,8 +49,8 @@
                     </ul>
                     {% else %}
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        <li class="nav-li"><a href="{% url 'registration_register' %}">{% trans 'S\'inscrire' %}</a></li>
-                        <li class="nav-li"><a class="modal-trigger" href="#modal_login">{% trans 'Se connecter' %}</a></li>
+                        <li class="nav-li"><a class="bewet-entry" href="{% url 'registration_register' %}">{% trans 'S\'inscrire' %}</a></li>
+                        <li class="nav-li"><a class="modal-trigger bewet-entry" href="#modal_login">{% trans 'Se connecter' %}</a></li>
                     </ul>
                     <ul class="side-nav" id="mobile-demo">
                         <li><a href="{% url 'registration_register' %}">{% trans 'S\'inscrire' %}</a></li>
@@ -68,10 +70,10 @@
                 <p>
                 <ul class="center">
                     <li>
-                        <a class="btn bewet-connect bewet-facebook-connect" href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}"><img class="bewet-connect-logo" src="{% static 'icons/external/FB-f-Logo__white_29.png' %}"/><span style="margin-left:20px">Connexion avec Facebook</span></a>
+                        <a class="btn bewet-connect bewet-facebook-connect" href="{% url 'social:begin' 'facebook' %}"><img class="bewet-connect-logo" src="{% static 'icons/external/FB-f-Logo__white_29.png' %}"/><span style="margin-left:20px">Connexion avec Facebook</span></a>
                     </li>
                     <li style="margin-top:10px;">
-                        <a class="btn bewet-connect bewet-google-connect" href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}"><img class="bewet-connect-logo" src="{% static 'icons/external/btn_google_signin_dark_normal_hdpi.9.png' %}"/><span style="margin-left:20px">Connexion avec Google</span></a>
+                        <a class="btn bewet-connect bewet-google-connect" href="{% url 'social:begin' 'google-oauth2' %}"><img class="bewet-connect-logo" src="{% static 'icons/external/btn_google_signin_dark_normal_hdpi.9.png' %}"/><span style="margin-left:20px">Connexion avec Google</span></a>
                     </li>
                     <li  style="margin:20px;">
                         <span class="center" > ou </span>

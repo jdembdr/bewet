@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 from django.utils.translation import ugettext as _
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class CrewRole(models.Model):
@@ -70,4 +71,5 @@ class Crew(models.Model):
             default=BEGINNER)
 
     language = models.ManyToManyField(Language)
+    user = models.OneToOneField(User)
 

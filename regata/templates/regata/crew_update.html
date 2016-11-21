@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block header %}
+<link rel="stylesheet" href="{% static 'regata/css/home.css' %}"/>
+{% endblock %}
+
+{% block content %}
+<div class="slider white">
+
+<div class="section" style="background-color: #00c1ea;">
+    <div class="row">
+        <div class="col s12 m4 offset-m4 center" >
+            <a id="separator">{% trans 'Bonjour ' %} {{user.first_name}}</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s6 m4 l2 offset-l3">
+            <div id="crew-profile" class="center promo">
+                <img src="{% static 'regata/icons/picto_equipier_home_page.png' %}"></img>
+                <p class="promo-caption"><b>{% trans 'Je suis un équipier' %}</b></p>
+            </div>
+        </div>
+        <div id="boat-profile" class="col s6 m4 l2">
+            <div class="center promo promo-example">
+                <img src="{% static 'regata/icons/picto_bateau_home_page.png' %}"></img>
+                <p class="promo-caption"><b>{% trans 'J\'ai un bateau' %}</b></p>
+            </div>
+        </div>
+        <div  id="regata-planning"class="col s12 m4 l2">
+            <div class="center promo promo-example">
+                <img src="{% static 'regata/icons/picto_regate_home_page.png' %}"></img>
+                <p class="promo-caption"><b>{% trans 'Mes régates' %}</b></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section" style="background-color: #ffffff;">
+    <div class="row">
+        <div class="col s12 m6 offset-m3 l4 offset-l4">
+            <div class="center">
+                <form action="" method="post">{% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" value="Send message" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+    
+</script>
+{% endblock %}

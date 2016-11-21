@@ -6,12 +6,11 @@ from registration.backends.hmac.views import RegistrationView
 from registration import signals
 
 
-from .models import Regata
-from django.contrib.auth.models import User
-# Create your views here.
-
 def home(request):
     return render(request, template_name='regata/home.html', context=None)
+
+def video(request):
+    return render(request, template_name='regata/video.html', context=None)
 
 class BewetRegistrationView(RegistrationView):
     """
@@ -40,14 +39,3 @@ class BewetRegistrationView(RegistrationView):
                                  request=self.request)
         return user
 
-def video(request):
-    return render(request, template_name='regata/video.html', context=None)
-
-class WelcomeView(TemplateView):
-    template_name = "regata/welcome.html"
-
-class UpdateProfileView(UpdateView):
-    model=User
-
-class RegataView(DetailView):
-    model = Regata

@@ -1,40 +1,5 @@
-
-div nav {
-  height: 90px;
-}
-
-nav div.nav-wrapper ul#nav-mobile {
-    vertical-align: bottom;
-    margin-right: 100;
-    position: relative;
-    top: 44%;
-}
-
-nav div.nav-wrapper ul#nav-mobile a{
-    border-radius: 35px;
-    border: 1px solid #FFFFFF;
-    width: 200px;
-    text-align: center;
-    display: inline;
-    margin-right: 20px;
-}
-
-nav div.nav-wrapper ul#nav-mobile a:hover{
-    background-color: #00c1ea;
-}
-
-nav a.brand-logo {
-  padding-left: 10%;
-  position: relative;
-}
-
 nav ul a:hover, .btn{
     background-color: #51c0e8;
-}
-
-footer.page-footer{
-  margin-top: -1px;
-  padding-top: -1px;
 }
 
 .avatar-frame{
@@ -56,15 +21,6 @@ div.modal {
 div#modal_login {
     max-width: 500px;
     width: 35%;
-}
-
-ul#nav-mobile {
-    vertical-align: bottom;
-}
-
-ul#nav-mobile li.nav-li {
-    display: inline-block;
-    bottom: 90%;
 }
 
 a.bewet-btn{
