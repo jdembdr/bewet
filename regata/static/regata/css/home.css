@@ -39,19 +39,24 @@ a.bewet-btn{
     color: #ffffff;
 }
 
-a#separator{
+div#separator span{
     border-radius: 35px;
-    display: inline;
     background-color: #ffffff;
     color: #000000;
     position: relative;
-    bottom: 25px;
+    bottom: 45px;
     padding-left: 50px;
     padding-right: 50px;
     padding-top: 5px;
     padding-bottom: 5px;
     z-index: 2;
     font-size:1.2em
+}
+
+div#separator img#white_arrow{
+    display: block;
+    margin-right:auto;
+    margin-left:auto;
 }
 
 p.promo-caption{

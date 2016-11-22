@@ -4,7 +4,7 @@
 
 {% block header %}
 <link rel="stylesheet" href="{% static 'regata/css/home.css' %}"/>
-<link rel="stylesheet" href="{% static 'regata/css/form.css' %}"/>
+<link rel="stylesheet" href="{% static 'regata/css/bewet-form.css' %}"/>
 {% endblock %}
 
 {% block content %}
@@ -13,77 +13,102 @@
         <img src="{% static 'regata/medias/slider/giraglia.jpg' %}">
     </div>
 </div>
-<div class="section" style="background-color: #00c1ea;">
-    <div class="row">
-        <div class="col s12 m4 offset-m4 center" >
-            <a id="separator">{% trans 'Bonjour ' %} {{user.first_name}}</a>
+<div class="row" style="background-color: #00c1ea; width:100%;margin:unset;">
+    <div id="separator" class="center" style="position:relative;" >
+        <img id="white_arrow" src="{% static 'icons/selector-white.png' %}"></img>
+        <div class="center" >
+            <span class="z-depth-1" id="separator">{% trans 'Bonjour ' %} {{user.first_name}}</span>
         </div>
     </div>
-    <div class="row">
-        <div class="col s6 m4 l2 offset-l3">
-            <div id="crew-profile" class="center promo">
-                <img src="{% static 'regata/icons/picto_equipier_home_page.png' %}"></img>
-                <p class="promo-caption"><b>{% trans 'Je suis un équipier' %}</b></p>
-            </div>
+    <div class="col s6 m4 l2 offset-l3">
+        <div id="crew-profile" class="center promo">
+            <img src="{% static 'regata/icons/picto_equipier_home_page.png' %}"></img>
+            <p class="promo-caption"><b>{% trans 'Je suis un équipier' %}</b></p>
         </div>
-        <div id="boat-profile" class="col s6 m4 l2">
-            <div class="center promo promo-example">
-                <img src="{% static 'regata/icons/picto_bateau_home_page.png' %}"></img>
-                <p class="promo-caption"><b>{% trans 'J\'ai un bateau' %}</b></p>
-            </div>
+    </div>
+    <div id="boat-profile" class="col s6 m4 l2">
+        <div class="center promo promo-example">
+            <img src="{% static 'regata/icons/picto_bateau_home_page.png' %}"></img>
+            <p class="promo-caption"><b>{% trans 'J\'ai un bateau' %}</b></p>
         </div>
-        <div  id="regata-planning"class="col s12 m4 l2">
-            <div class="center promo promo-example">
-                <img src="{% static 'regata/icons/picto_regate_home_page.png' %}"></img>
-                <p class="promo-caption"><b>{% trans 'Mes régates' %}</b></p>
-            </div>
+    </div>
+    <div  id="regata-planning"class="col s12 m4 l2">
+        <div class="center promo promo-example">
+            <img src="{% static 'regata/icons/picto_regate_home_page.png' %}"></img>
+            <p class="promo-caption"><b>{% trans 'Mes régates' %}</b></p>
         </div>
     </div>
 </div>
 
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <div class="section" style="background-color: #ffffff;">
-        <div class="row">
-            <h5>{% trans 'Profil personnel' %}</h5>
-            <div class="divider"> </div>
-            <div class="col s12 m4 center">
-                <img class="avatar" src="{{ user.crew.picture.url | default:'icons/avatar/default.png' }}"></img>
+<div class="section" style="background-color: #ffffff;">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="container">
+            <div class="row">
+                <h5>{% trans 'Profil personnel' %}</h5>
+                <div class="divider"> </div>
+                <div class="col s8 m4 center">
+                    <img class="avatar" src="{{ user.crew.picture.url | default:'icons/avatar/default.png' }}"></img>
                     {{ profile_form.picture }}
+                </div>
+                <div class="col s8 m6 ">
+                    <table class="table-form">
+                        <tr>
+                            <th>{{ user_form.first_name.label }} </th> <td> {{ user_form.first_name }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ user_form.last_name.label }} </th> <td> {{ user_form.last_name }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ profile_form.gender.label }} </th> <td>{{ profile_form.gender }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ profile_form.birth_date.label }} </th> <td>{{ profile_form.birth_date }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ profile_form.size.label }} </th> <td>{{ profile_form.size }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ profile_form.weight.label }} </th> <td>{{ profile_form.weight }}</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
-            <div class="col s12 m6 ">
-                <table class="form">
-                    <tr>
-                        <th>{{ user_form.first_name.label }} </th> <td> {{ user_form.first_name }}</td>
-                    </tr>
-                    <tr>
-                        <th>{{ user_form.last_name.label }} </th> <td> {{ user_form.last_name }}</td>
-                    </tr>
-                    <tr>
-                        <th>{{ profile_form.gender.label }} </th> <td>{{ profile_form.gender }}</td>
-                    </tr>
-                    <tr>
-                        <th>{{ profile_form.birth_date.label }} </th> <td>{{ profile_form.birth_date }}</td>
-                    </tr>
-                    <tr>
-                        <th>{{ profile_form.size.label }} </th> <td>{{ profile_form.size }}</td>
-                    </tr>
-                    <tr>
-                        <th>{{ profile_form.weight.label }} </th> <td>{{ profile_form.weight }}</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
 
-        <div class="row">
-            <h5>{% trans 'Profil régatier' %}</h5>
-            <div class="divider"> </div>
-            <div class="col s12 m8 offset-m4">
+            <div class="row">
+                <h5>{% trans 'Profil régatier' %}</h5>
+                <div class="divider"> </div>
+                <div class="col s8 m4 center">
+                </div>
+                <div class="col s8 m6">
+                    <table class="table-form">
+                        <tr>
+                            <th>{{ profile_form.licence_id.label }} </th> <td> {{ profile_form.licence_id }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ profile_form.isaf_id.label }} </th> <td> {{ profile_form.isaf_id }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ profile_form.level.label }} </th> <td> {{ profile_form.level }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ profile_form.language.label }} </th> <td> {{ profile_form.language }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ profile_form.description.label }} </th> <td> {{ profile_form.description }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ profile_form.best_results.label }} </th> <td> {{ profile_form.best_results }}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col s12 m12">
+                    <input class="bewet-btn" type="submit" value="{% trans 'Enregistrer les modifications' %}" />
+                </div>
             </div>
         </div>
-        <input type="submit" value="{% trans 'Valider' %}" />
-    </div>
-</form>
+    </form>
+</div>
 
 {% endblock %}
 

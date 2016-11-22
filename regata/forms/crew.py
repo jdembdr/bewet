@@ -1,10 +1,11 @@
 from __future__ import absolute_import
+from gettext import gettext as _
 from datetime import date
 from django.forms import widgets
 from django import forms
 from regata.models.crew import Crew
 from django.contrib.auth.models import User
-
+from django.forms import extras
 
 class DateSelectorWidget(widgets.MultiWidget):
     def __init__(self, attrs=None):
@@ -45,17 +46,17 @@ class DateSelectorWidget(widgets.MultiWidget):
             return str(D)
 
 class CrewProfileForm(forms.ModelForm):
-    picture = forms.FileInput()
-    birth_date = forms.DateInput( widget=DateSelectorWidget )
+    picture = forms.FileField()
+    birth_date = forms.DateField(
+            widget=extras.SelectDateWidget(
+                empty_label=(_("Choose Year"), _("Choose Month"), _("Choose Day")),
+                ))
 
     class Meta:
         model = Crew
-        fields = ['picture', 'birth_date',
-                'gender', 'size', 'weight',]
-        """
+        fields = ['gender', 'size', 'weight',
                 'licence_id','isaf_id','level',
                 'language', 'description', 'best_results']
-        """
 
 class UserForm(forms.ModelForm):
     class Meta:

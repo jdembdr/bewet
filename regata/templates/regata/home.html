@@ -48,48 +48,43 @@
                 <a class="bewet-btn btn"><span>Inscription gratuite</span></a>
                 <p>J'ai déjà un compte, <a class="modal-trigger" href="#modal_login"><font color="#52c0e8">je me connecte ici.</font></span></a></p>
             </div>
-       </li>
+        </li>
     </ul>
 </div>
 
-<div class="section" style="background-color: #00c1ea;">
-    <div class="row">
-        <div class="col s12 m4 offset-m4 center" >
-        <a id="separator">{% trans 'Rechercher ...' %}</a>
+<div class="row" style="background-color: #00c1ea; width:100%;">
+    <div id="separator" class="center" style="position:relative;" >
+        <img id="white_arrow" src="{% static 'icons/selector-white.png' %}"></img>
+        <div class="center" >
+            <span class="z-depth-1" id="separator">{% trans 'Bonjour ' %} {{user.first_name}}</span>
         </div>
     </div>
-    <div class="row">
-        <div class="col s6 m4 l2 offset-l3">
-            <div class="center promo">
-                <img src="{% static 'regata/icons/picto_equipier_home_page.png' %}"></img>
-                <p class="promo-caption"><b>{% trans 'Des équipiers,' %}</b></p>
-                <p class="promo-desc">{% lorem %}</p>
-            </div>
-        </div>
-        <div class="col s6 m4 l2">
-            <div class="center promo promo-example">
-                <img src="{% static 'regata/icons/picto_bateau_home_page.png' %}"></img>
-                <p class="promo-caption"><b>{% trans 'des bateaux,' %}</b></p>
-                <p class="promo-desc">{% lorem %}</p>
-            </div>
-        </div>
-        <div class="col s12 m4 l2">
-            <div class="center promo promo-example">
-                <img src="{% static 'regata/icons/picto_regate_home_page.png' %}"></img>
-                <p class="promo-caption"><b>{% trans 'des régates.' %}</b></p>
-                <p class="promo-desc">{% lorem %}</p>
-            </div>
+    <div class="col s6 m4 l2 offset-l3">
+        <div class="center promo">
+            <img src="{% static 'regata/icons/picto_equipier_home_page.png' %}"></img>
+            <p class="promo-caption"><b>{% trans 'Des équipiers,' %}</b></p>
+            <p class="promo-desc">{% lorem %}</p>
         </div>
     </div>
-    <hr style="width:43px; height:3px; background: #ffffff; border:none;"/>
-    <div class="row">
-        <div class="col s12 m6 offset-m3 l4 offset-l4">
-            <div class="center">
-                <p class="white-text">{% trans 'Comment régater avec Bewet ?' %}</p>
-                <p class="center black-text" style="font-style:bold;font-size:1.2em">{% trans 'Voir la vidéo' %}</b></p>
-                <a class="video-modal-trigger" href="#modal_video"><img src="{% static 'regata/icons/bouton_play_video.png' %}"></img></a>
-            </div>
+    <div class="col s6 m4 l2">
+        <div class="center promo promo-example">
+            <img src="{% static 'regata/icons/picto_bateau_home_page.png' %}"></img>
+            <p class="promo-caption"><b>{% trans 'des bateaux,' %}</b></p>
+            <p class="promo-desc">{% lorem %}</p>
         </div>
+    </div>
+    <div class="col s12 m4 l2">
+        <div class="center promo promo-example">
+            <img src="{% static 'regata/icons/picto_regate_home_page.png' %}"></img>
+            <p class="promo-caption"><b>{% trans 'des régates.' %}</b></p>
+            <p class="promo-desc">{% lorem %}</p>
+        </div>
+    </div>
+    <div class="col s12 m6 offset-m3 l4 offset-l4 center" style="margin-bottom:30px;">
+        <hr style="width:43px; height:3px; background: #ffffff; border:none;"/>
+        <p class="white-text">{% trans 'Comment régater avec Bewet ?' %}</p>
+        <p class="center black-text" style="font-style:bold;font-size:1.2em">{% trans 'Voir la vidéo' %}</b></p>
+        <a class="video-modal-trigger" href="#modal_video"><img src="{% static 'regata/icons/bouton_play_video.png' %}"></img></a>
     </div>
 </div>
 
@@ -106,17 +101,17 @@
 $( document ).ready(function(){
     $('.slider').slider({full_width: true, height: '480px'});
     $('.video-modal-trigger').leanModal({
-      dismissible: true, // Modal can be dismissed by clicking outside of the modal
-      opacity: .5, // Opacity of modal background
-      in_duration: 300, // Transition in duration
-      out_duration: 200, // Transition out duration
-      starting_top: '4%', // Starting top style attribute
-      ending_top: '10%', // Ending top style attribute
-      ready: function() {
-          $('#modal_video').load('{% url 'regata:video' %}'); }, // Callback for Modal open
-      complete: function() {} // Callback for Modal close
+        dismissible: true, // Modal can be dismissed by clicking outside of the modal
+        opacity: .5, // Opacity of modal background
+        in_duration: 300, // Transition in duration
+        out_duration: 200, // Transition out duration
+        starting_top: '4%', // Starting top style attribute
+        ending_top: '10%', // Ending top style attribute
+        ready: function() {
+            $('#modal_video').load('{% url 'regata:video' %}'); }, // Callback for Modal open
+        complete: function() {} // Callback for Modal close
     }
-  );
+    );
 });
 </script>
 {% endblock %}

@@ -23,7 +23,7 @@ div#modal_login {
     width: 35%;
 }
 
-a.bewet-btn{
+input.bewet-btn, a.bewet-btn{
     border-radius: 35px;
     background-color: #00c1ea;
     color: #ffffff;
