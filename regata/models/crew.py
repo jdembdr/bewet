@@ -62,7 +62,7 @@ class Crew(models.Model):
             ( FRONTSAIL, _('frontsail')),
             )
 
-    picture = models.ImageField(upload_to='documents/%Y/%m/%d', blank=True, null=True)
+    picture = models.ImageField(upload_to='documents/%Y/%m/%d', default='default.png', blank=True, null=True)
     birth_date = models.DateField(blank=True, null=True)
     gender = models.CharField(
             max_length=3,

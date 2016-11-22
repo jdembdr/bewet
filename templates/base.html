@@ -33,7 +33,7 @@
                         <li> 
                             <a href="{% url 'regata:profile' %}">
                                 <div class="avatar-frame">
-                                    <img src="{% static 'icons/avatar/default.png' %}"/>
+                                    <img src="{{ user.crew.picture.url }}"/>
                                     <span style="line-height:initial;">{{ user.first_name|default:user.username }}</span>
                                 </div>
                             </a>

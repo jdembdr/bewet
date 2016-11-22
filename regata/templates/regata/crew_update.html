@@ -4,6 +4,7 @@
 
 {% block header %}
 <link rel="stylesheet" href="{% static 'regata/css/home.css' %}"/>
+<link rel="stylesheet" href="{% static 'regata/css/form.css' %}"/>
 {% endblock %}
 
 {% block content %}
@@ -47,19 +48,38 @@
             <h5>{% trans 'Profil personnel' %}</h5>
             <div class="divider"> </div>
             <div class="col s12 m4 center">
-                <img src="{{ user.crew.picture.url }}" style="heigth:50px;width:50px;"></img>
+                <img class="avatar" src="{{ user.crew.picture.url | default:'icons/avatar/default.png' }}"></img>
                     {{ profile_form.picture }}
             </div>
-            <div class="col s12 m8 ">
-                {{ profile_form.birth_date.label }} {{ profile_form.birth_date }}
-                {{ user_form.first_name.label }} {{ user_form.first_name }}
-                {{ user_form.last_name.label }} {{ user_form.last_name }}
+            <div class="col s12 m6 ">
+                <table class="form">
+                    <tr>
+                        <th>{{ user_form.first_name.label }} </th> <td> {{ user_form.first_name }}</td>
+                    </tr>
+                    <tr>
+                        <th>{{ user_form.last_name.label }} </th> <td> {{ user_form.last_name }}</td>
+                    </tr>
+                    <tr>
+                        <th>{{ profile_form.gender.label }} </th> <td>{{ profile_form.gender }}</td>
+                    </tr>
+                    <tr>
+                        <th>{{ profile_form.birth_date.label }} </th> <td>{{ profile_form.birth_date }}</td>
+                    </tr>
+                    <tr>
+                        <th>{{ profile_form.size.label }} </th> <td>{{ profile_form.size }}</td>
+                    </tr>
+                    <tr>
+                        <th>{{ profile_form.weight.label }} </th> <td>{{ profile_form.weight }}</td>
+                    </tr>
+                </table>
             </div>
         </div>
 
         <div class="row">
             <h5>{% trans 'Profil régatier' %}</h5>
             <div class="divider"> </div>
+            <div class="col s12 m8 offset-m4">
+            </div>
         </div>
         <input type="submit" value="{% trans 'Valider' %}" />
     </div>
