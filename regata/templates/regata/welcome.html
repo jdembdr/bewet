@@ -7,8 +7,11 @@
 {% endblock %}
 
 {% block content %}
-<div class="slider white">
-
+<div class="parallax-container" style="height:100px;">
+    <div class="parallax">
+        <img src="{% static 'regata/medias/slider/giraglia.jpg' %}">
+    </div>
+</div>
 <div class="section" style="background-color: #00c1ea;">
     <div class="row">
         <div class="col s12 m4 offset-m4 center" >
@@ -49,6 +52,8 @@
 
 {% block js %}
 <script type="text/javascript">
-    
+$(document).ready(function(){
+    $('.parallax').parallax();
+});
 </script>
 {% endblock %}

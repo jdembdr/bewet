@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 """bewet URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -13,16 +14,17 @@ Including another URLconf
     1. Add an import:  from blog import urls as blog_urls
     2. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
+import datetime
+
 from django.conf.urls import include, url, patterns
+from django.conf.urls.static import static
+from django.shortcuts import render
 from django.contrib import admin
 from django.conf import settings
 
 import landing.views
 import regata.views
 
-
-from django.shortcuts import render
-import datetime
 def test(request):
     return render(request, "test.html", {'time' : datetime.datetime.now()})
 
@@ -46,6 +48,5 @@ urlpatterns = [
 
 if settings.DEBUG:
     import debug_toolbar
-    urlpatterns += [
-        url(r'^__debug__/', include(debug_toolbar.urls)),
-    ]
+    urlpatterns += [ url(r'^__debug__/', include(debug_toolbar.urls)), ]
+    urlpatterns +=  static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

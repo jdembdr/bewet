@@ -7,8 +7,11 @@
 {% endblock %}
 
 {% block content %}
-<div class="slider white">
-
+<div class="parallax-container" style="height:100px;">
+    <div class="parallax">
+        <img src="{% static 'regata/medias/slider/giraglia.jpg' %}">
+    </div>
+</div>
 <div class="section" style="background-color: #00c1ea;">
     <div class="row">
         <div class="col s12 m4 offset-m4 center" >
@@ -37,23 +40,37 @@
     </div>
 </div>
 
-<div class="section" style="background-color: #ffffff;">
-    <div class="row">
-        <div class="col s12 m6 offset-m3 l4 offset-l4">
-            <div class="center">
-                <form action="" method="post">{% csrf_token %}
-                    {{ form.as_p }}
-                    <input type="submit" value="Send message" />
-                </form>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="section" style="background-color: #ffffff;">
+        <div class="row">
+            <h5>{% trans 'Profil personnel' %}</h5>
+            <div class="divider"> </div>
+            <div class="col s12 m4 center">
+                <img src="{{ user.crew.picture.url }}" style="heigth:50px;width:50px;"></img>
+                    {{ profile_form.picture }}
+            </div>
+            <div class="col s12 m8 ">
+                {{ profile_form.birth_date.label }} {{ profile_form.birth_date }}
+                {{ user_form.first_name.label }} {{ user_form.first_name }}
+                {{ user_form.last_name.label }} {{ user_form.last_name }}
             </div>
         </div>
+
+        <div class="row">
+            <h5>{% trans 'Profil régatier' %}</h5>
+            <div class="divider"> </div>
+        </div>
+        <input type="submit" value="{% trans 'Valider' %}" />
     </div>
-</div>
+</form>
 
 {% endblock %}
 
 {% block js %}
 <script type="text/javascript">
-    
+$(document).ready(function(){
+    $('.parallax').parallax();
+});
 </script>
 {% endblock %}

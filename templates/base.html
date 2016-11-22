@@ -93,7 +93,6 @@
         {% endif %}
         {% endblock %}
 
-
         {% block content %}
         {% endblock %}
 
@@ -143,9 +142,16 @@
 $( document ).ready(function(){
     $('.button-collapse').sideNav();
     $('.modal-trigger').leanModal({
-      ending_top: '30%', // Ending top style attribute
+        ending_top: '30%', // Ending top style attribute
     });
+    $('.tooltipped').tooltip({delay: 50});
 }) 
+
+{% if messages %}
+{% for message in messages %}
+Materialize.toast( '{{ message }}', 4000);
+{% endfor %}
+{% endif %}
         </script>
 
         {% block js %}

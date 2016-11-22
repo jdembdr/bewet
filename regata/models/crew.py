@@ -62,7 +62,7 @@ class Crew(models.Model):
             ( FRONTSAIL, _('frontsail')),
             )
 
-    picture = models.ImageField(blank=True, null=True)
+    picture = models.ImageField(upload_to='documents/%Y/%m/%d', blank=True, null=True)
     birth_date = models.DateField(blank=True, null=True)
     gender = models.CharField(
             max_length=3,
@@ -73,11 +73,15 @@ class Crew(models.Model):
     size = models.IntegerField(blank=True, null=True)
     weight = models.IntegerField(blank=True, null=True)
     licence_id = models.IntegerField(blank=True, null=True)
+    isaf_id = models.IntegerField(blank=True, null=True)
 
     level = models.CharField(
             max_length=3,
             choices=LEVEL_CHOICE,
             default=BEGINNER, null=True)
+
+    description = models.TextField(null=True, blank=True)
+    best_results = models.TextField(null=True, blank = True)
 
     language = models.ManyToManyField(Language, blank=True)
     user = models.OneToOneField(User)
