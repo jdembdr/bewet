@@ -15,16 +15,15 @@ from regata.forms.crew import CrewProfileForm, UserForm
 class WelcomeView(TemplateView):
     template_name = "regata/welcome.html"
 
-class CrewUpdateView(TemplateView):
-    template_name = "regata/crew_update.html"
-    model = Crew
-    form_class = CrewProfileForm
+class SettingsView(TemplateView):
+    template_name = "regata/settings.html"
     success_url = '#'
 
     def get_object(self):
         return Crew.objects.get(user=self.request.user)
 
-def update_profile(request):
+
+def user_profile(request):
     if request.method == 'POST':
         user_form = UserForm(request.POST, instance=request.user)
         profile_form = CrewProfileForm(request.POST, request.FILES, instance=request.user.crew)
@@ -38,10 +37,14 @@ def update_profile(request):
     else:
         user_form = UserForm(instance=request.user)
         profile_form = CrewProfileForm(instance=request.user.crew)
-    return render(request, 'regata/crew_update.html', {
+    return render(request, 'regata/snippet/user_profile.html', {
         'user_form': user_form,
         'profile_form': profile_form
     })
+
+
+def update_profile(request):
+    return render(request, 'regata/settings.html', {'form': 'user'})
 
 
 

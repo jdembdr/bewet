@@ -2,6 +2,7 @@
 table.table-form th,
 table.table-form td{
     padding-bottom:2px;
+    padding-top:2px;
 }
 
 table.table-form th{
@@ -32,5 +33,5 @@ input[type='submit']{
     margin-left:auto;
     margin-right:auto;
     display:block;
-}
+
 
