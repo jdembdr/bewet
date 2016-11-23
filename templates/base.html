@@ -32,7 +32,7 @@
                     {% if user and not user.is_anonymous %}
                     <ul id="nav-mobile" class="right hide-on-med-and-down" style="top:10%;">
                         <li> 
-                            <a href="{% url 'regata:profile' %}">
+                            <a href="{% url 'regata:settings' %}">
                                 <div class="avatar-frame">
                                     <img src="{{ user.crew.picture.url }}"/>
                                     <span style="line-height:initial;">{{ user.first_name|default:user.username }}</span>
@@ -42,10 +42,9 @@
                     </ul>
                     <ul class="side-nav" id="mobile-demo">
                         <li> 
-                            <div class="chip">
-                                <img src="images/yuna.jpg" alt="Contact Person">
-                                {{ user.get_full_name|default:user.username }}
-                            </div>
+                            <a href="{% url 'regata:settings' %}">
+                                <span style="line-height:initial;">{{ user.first_name|default:user.username }}</span>
+                            </a>
                         </li>
                     </ul>
                     {% else %}

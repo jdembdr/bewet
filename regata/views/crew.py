@@ -43,7 +43,7 @@ def user_profile(request):
     })
 
 
-def update_profile(request):
+def user_settings(request):
     return render(request, 'regata/settings.html', {'form': 'user'})
 
 

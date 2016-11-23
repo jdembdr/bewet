@@ -19,13 +19,13 @@ from django.contrib import admin
 from django.conf import settings
 
 from .views import video
-from .views.crew import WelcomeView,  update_profile, user_profile
+from .views.crew import WelcomeView, user_settings, user_profile
 
 
 urlpatterns = [
         url('video', video, name='video'),
         url('welcome/$', WelcomeView.as_view(), name='welcome'),
-        url('profile/$', update_profile, name='profile'),
+        url('settings/$', user_settings, name='settings'),
         url('user_profile/$', user_profile, name='user_profile'),
 ]
 
