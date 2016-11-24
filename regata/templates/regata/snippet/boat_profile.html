@@ -6,63 +6,46 @@
         {% csrf_token %}
         <div class="container">
             <div class="row">
-                <h5>{% trans 'Profil personnel' %}</h5>
+                <h5>{% trans 'Profil de mon bateau' %}</h5>
                 <div class="divider"> </div>
                 <div class="col s8 m4 center">
-                    <img class="avatar" src="{{ boat_form.picture.url | default:'icons/avatar/default.png' }}"></img>
-                    {{ boat_form.picture }}
+                    <img class="avatar" src="{{ boat.picture.url | default:'icons/avatar/default-boat.png' }}"></img>
+                    {{ form.picture }}
                 </div>
                 <div class="col s8 m6 ">
                     <table class="table-form">
                         <tr>
-                            <th>{{ user_form.first_name.label }} </th> <td> {{ user_form.first_name }}</td>
+                            <th>{{ form.length.label }} </th> <td> {{ form.length }}</td>
                         </tr>
                         <tr>
-                            <th>{{ user_form.last_name.label }} </th> <td> {{ user_form.last_name }}</td>
+                            <th>{{ form.name.label }} </th> <td> {{ form.name }}</td>
                         </tr>
                         <tr>
-                            <th>{{ profile_form.gender.label }} </th> <td>{{ profile_form.gender }}</td>
+                            <th>{{ form.sail_number.label }} </th> <td>{{ form.sail_number }}</td>
                         </tr>
                         <tr>
-                            <th>{{ profile_form.birth_date.label }} </th> <td>{{ profile_form.birth_date }}</td>
+                            <th>{{ form.boat_type.label }} </th> <td>{{ form.boat_type }}</td>
                         </tr>
                         <tr>
-                            <th>{{ profile_form.size.label }} </th> <td>{{ profile_form.size }}</td>
+                            <th>{{ form.build_year.label }} </th> <td>{{ form.build_year }}</td>
                         </tr>
                         <tr>
-                            <th>{{ profile_form.weight.label }} </th> <td>{{ profile_form.weight }}</td>
+                            <th>{{ form.owner.label }} </th> <td>{{ form.owner }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ form.club.label }} </th> <td>{{ form.club }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ form.zone.label }} </th> <td>{{ form.zone }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ form.description.label }} </th> <td>{{ form.description }}</td>
                         </tr>
                     </table>
                 </div>
             </div>
 
             <div class="row">
-                <h5>{% trans 'Profil régatier' %}</h5>
-                <div class="divider"> </div>
-                <div class="col s8 m4 center">
-                </div>
-                <div class="col s8 m6">
-                    <table class="table-form">
-                        <tr>
-                            <th>{{ profile_form.licence_id.label }} </th> <td> {{ profile_form.licence_id }}</td>
-                        </tr>
-                        <tr>
-                            <th>{{ profile_form.isaf_id.label }} </th> <td> {{ profile_form.isaf_id }}</td>
-                        </tr>
-                        <tr>
-                            <th>{{ profile_form.level.label }} </th> <td> {{ profile_form.level }}</td>
-                        </tr>
-                        <tr>
-                            <th>{{ profile_form.language.label }} </th> <td> {{ profile_form.language }}</td>
-                        </tr>
-                        <tr>
-                            <th>{{ profile_form.description.label }} </th> <td> {{ profile_form.description }}</td>
-                        </tr>
-                        <tr>
-                            <th>{{ profile_form.best_results.label }} </th> <td> {{ profile_form.best_results }}</td>
-                        </tr>
-                    </table>
-                </div>
                 <div class="col s12 m12">
                     <input class="bewet-btn" type="submit" value="{% trans 'Enregistrer les modifications' %}" />
                 </div>

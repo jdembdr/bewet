@@ -4,7 +4,7 @@ from gettext import gettext as _
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
-from django.views.generic import TemplateView, UpdateView, DetailView
+from django.views.generic import TemplateView, UpdateView, CreateView
 
 from registration.backends.hmac.views import RegistrationView
 from registration import signals
@@ -20,32 +20,33 @@ class WelcomeView(TemplateView):
 
 
 def boat_profile(request):
-    if request.method == 'POST':
-        user_form = UserForm(request.POST, instance=request.user)
-        profile_form = CrewProfileForm(request.POST, request.FILES, instance=request.user.crew)
-        if user_form.is_valid() and profile_form.is_valid():
-            user_form.save()
-            messages.success(request, _('The boat profile was successfully updated!'))
-            return redirect('regata:settings')
-        else:
-            messages.error(request, _('Please correct errors below.'))
-            return
-    else:
-        boats = Boat.objects.filter( skipper = request.user )
-        boat_form = BoatProfileForm( instance = request.user.crew )
-    return render(request, 'regata/snippet/user_profile.html',{
-        'boat_form': boat_form,
-        'boats': boats,
-    })
+    boats = Boat.objects.filter(skipper = request.user.crew)
+    if len(boats) > 0 :
+        return BoatUpdateView.as_view()(request, pk=boats[0].pk)
+    else :
+        return BoatCreateView.as_view()(request)
+
+class BoatCreateView(CreateView):
+    model = Boat
+    form_class = BoatProfileForm
+    template_name = 'regata/snippet/boat_profile.html'
+    success_url = 'regata:settings'
+
+    def form_valid(self, form):
+        form.instance.skipper = self.request.user.crew
+        return super(BoatCreateView, self).form_valid(form)
+
 
 class BoatUpdateView(UpdateView):
     model = Boat
-    model_form = BoatProfileForm
-    template_name = "reagta/snippet/boat_profile.html"
+    form_class = BoatProfileForm
+    template_name = 'regata/snippet/boat_profile.html'
+    success_url = 'regata:settings'
 
     def get_context_data(self, **kwargs):
         context = super(BoatUpdateView, self).get_context_data(**kwargs)
-        context['boat_list'] = self.model.objects.filter( skipper= self.request.user)
+        context['boat_list'] = self.model.objects.filter( skipper= self.request.user.crew)
+        return context
 
 def user_profile(request):
     if request.method == 'POST':

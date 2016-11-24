@@ -32,7 +32,7 @@
             <p class="promo-caption"><b>{% trans 'J\'ai un bateau' %}</b></p>
         </div>
     </div>
-    <div  id="regata-planning"class="col s12 m4 l2">
+    <div  id="planning-profile"class="col s12 m4 l2">
         <div class="center promo promo-example">
             <img src="{% static 'regata/icons/picto_regate_home_page.png' %}"></img>
             <p class="promo-caption"><b>{% trans 'Mes régates' %}</b></p>
@@ -51,6 +51,10 @@ $(document).ready(function(){
     $('.parallax').parallax();
     $('div#profile-section').load('{% url 'regata:user_profile' %}')
 });
+
+$('div#crew-profile').click(function(){ $('div#profile-section').load('{% url 'regata:user_profile' %}') });
+$('div#boat-profile').click(function(){ $('div#profile-section').load('{% url 'regata:boat_profile' %}') });
+$('div#planning-profile').click(function(){ $('div#profile-section').load('{% url 'regata:planning_profile' %}') });
 
 </script>
 {% endblock %}

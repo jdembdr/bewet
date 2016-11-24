@@ -19,13 +19,15 @@ from django.contrib import admin
 from django.conf import settings
 
 from .views import video
-from .views.crew import WelcomeView, user_settings, user_profile
+from .views.crew import WelcomeView, user_settings, user_profile, boat_profile, BoatUpdateView, BoatCreateView
 
 
 urlpatterns = [
-        url('video', video, name='video'),
-        url('welcome/$', WelcomeView.as_view(), name='welcome'),
-        url('settings/$', user_settings, name='settings'),
-        url('user_profile/$', user_profile, name='user_profile'),
+        url(r'video', video, name='video'),
+        url(r'welcome/$', WelcomeView.as_view(), name='welcome'),
+        url(r'settings/$', user_settings, name='settings'),
+        url(r'user_profile/$', user_profile, name='user_profile'),
+        url(r'boat_profile/$', boat_profile, name='boat_profile'),
+        url(r'boat_profile/$', boat_profile, name='planning_profile'),
 ]
 

@@ -4,16 +4,16 @@ from django.db import models
 
 class Boat(models.Model):
     picture = models.ImageField(upload_to='boats/%Y/%m/%d', default='default-boat.png', blank=True, null=True)
-    name = models.CharField(max_length=30)
-    length = models.IntegerField()
-    sail_number = models.IntegerField()
-    boat_type = models.CharField(max_length=30)
-    build_year = models.IntegerField()
-    owner = models.CharField(max_length=30)
-    description = models.TextField(max_length= 500)
+    name = models.CharField(max_length=30, null=True)
+    length = models.FloatField(blank=True, null=True)
+    sail_number = models.CharField(max_length=20, blank=True, null=True)
+    boat_type = models.CharField(max_length=30, blank=True, null=True)
+    build_year = models.IntegerField( blank=True, null=True)
+    owner = models.CharField(max_length=30, blank=True, null=True)
+    description = models.TextField(max_length= 500, blank=True, null=True)
 
     # Foreign keys
     skipper = models.ForeignKey('Crew')
-    club = models.ForeignKey('Club')
-    zone = models.ForeignKey('Zone')
+    club = models.ForeignKey('Club', blank=True,null=True)
+    zone = models.ForeignKey('Zone', blank=True, null=True)
 
