@@ -12,6 +12,9 @@ from registration import signals
 from regata.models.crew import Crew
 from regata.forms.crew import CrewProfileForm, UserForm
 
+from regata.models.boat import Boat
+from regata.forms.boat import BoatProfileForm
+
 class WelcomeView(TemplateView):
     template_name = "regata/welcome.html"
 
@@ -42,9 +45,7 @@ class BoatUpdateView(UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super(BoatUpdateView, self).get_context_data(**kwargs)
-        context['boat_list'] = self.model.objects.filter( skipper= )
-
-
+        context['boat_list'] = self.model.objects.filter( skipper= self.request.user)
 
 def user_profile(request):
     if request.method == 'POST':

@@ -3,7 +3,7 @@ from django.utils.translation import ugettext as _
 from django.db import models
 
 class Boat(models.Model):
-    picture = models.ImageField(upload_to='boats/%Y/%m/%d', default='default-boat.png', blank=True, null=True))
+    picture = models.ImageField(upload_to='boats/%Y/%m/%d', default='default-boat.png', blank=True, null=True)
     name = models.CharField(max_length=30)
     length = models.IntegerField()
     sail_number = models.IntegerField()
