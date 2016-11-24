@@ -16,6 +16,36 @@ class WelcomeView(TemplateView):
     template_name = "regata/welcome.html"
 
 
+def boat_profile(request):
+    if request.method == 'POST':
+        user_form = UserForm(request.POST, instance=request.user)
+        profile_form = CrewProfileForm(request.POST, request.FILES, instance=request.user.crew)
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            messages.success(request, _('The boat profile was successfully updated!'))
+            return redirect('regata:settings')
+        else:
+            messages.error(request, _('Please correct errors below.'))
+            return
+    else:
+        boats = Boat.objects.filter( skipper = request.user )
+        boat_form = BoatProfileForm( instance = request.user.crew )
+    return render(request, 'regata/snippet/user_profile.html',{
+        'boat_form': boat_form,
+        'boats': boats,
+    })
+
+class BoatUpdateView(UpdateView):
+    model = Boat
+    model_form = BoatProfileForm
+    template_name = "reagta/snippet/boat_profile.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(BoatUpdateView, self).get_context_data(**kwargs)
+        context['boat_list'] = self.model.objects.filter( skipper= )
+
+
+
 def user_profile(request):
     if request.method == 'POST':
         user_form = UserForm(request.POST, instance=request.user)
