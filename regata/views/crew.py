@@ -15,9 +15,9 @@ from regata.forms.crew import CrewProfileForm, UserForm
 class WelcomeView(TemplateView):
     template_name = "regata/welcome.html"
 
+
 def user_profile(request):
     if request.method == 'POST':
-        import pdb;pdb.set_trace()
         user_form = UserForm(request.POST, instance=request.user)
         profile_form = CrewProfileForm(request.POST, request.FILES, instance=request.user.crew)
         if user_form.is_valid() and profile_form.is_valid():
