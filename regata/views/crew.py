@@ -15,25 +15,19 @@ from regata.forms.crew import CrewProfileForm, UserForm
 class WelcomeView(TemplateView):
     template_name = "regata/welcome.html"
 
-class SettingsView(TemplateView):
-    template_name = "regata/settings.html"
-    success_url = '#'
-
-    def get_object(self):
-        return Crew.objects.get(user=self.request.user)
-
-
 def user_profile(request):
     if request.method == 'POST':
+        import pdb;pdb.set_trace()
         user_form = UserForm(request.POST, instance=request.user)
         profile_form = CrewProfileForm(request.POST, request.FILES, instance=request.user.crew)
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
             messages.success(request, _('Your profile was successfully updated!'))
-            return redirect('regata:profile')
+            return redirect('regata:settings')
         else:
             messages.error(request, _('Please correct errors below.'))
+            return
     else:
         user_form = UserForm(instance=request.user)
         profile_form = CrewProfileForm(instance=request.user.crew)

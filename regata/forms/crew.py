@@ -46,15 +46,11 @@ class DateSelectorWidget(widgets.MultiWidget):
             return str(D)
 
 class CrewProfileForm(forms.ModelForm):
-    picture = forms.FileField()
-    birth_date = forms.DateField(
-            widget=extras.SelectDateWidget(
-                empty_label=(_("Choose Year"), _("Choose Month"), _("Choose Day")),
-                ))
+    birth_date = forms.DateField( widget=extras.SelectDateWidget )
 
     class Meta:
         model = Crew
-        fields = ['gender', 'size', 'weight',
+        fields = ['picture','gender', 'size', 'weight',
                 'licence_id','isaf_id','level',
                 'language', 'description', 'best_results']
 
