@@ -1,6 +1,7 @@
 {% load staticfiles %}
 {% load i18n %}
 
+{{ profile_form.media }}
 <div class="section" style="background-color: #ffffff;">
     <form action="{% url 'regata:user_profile' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
@@ -15,22 +16,40 @@
                 <div class="col s8 m6 ">
                     <table class="table-form">
                         <tr>
-                            <th>{{ user_form.first_name.label }} </th> <td> {{ user_form.first_name }}</td>
+                            <th>{{ user_form.first_name.label }} </th>    
                         </tr>
                         <tr>
-                            <th>{{ user_form.last_name.label }} </th> <td> {{ user_form.last_name }}</td>
+                            <td> {{ user_form.first_name }}</td>
                         </tr>
                         <tr>
-                            <th>{{ profile_form.gender.label }} </th> <td>{{ profile_form.gender }}</td>
+                            <th>{{ user_form.last_name.label }} </th>   
                         </tr>
                         <tr>
-                            <th>{{ profile_form.birth_date.label }} </th> <td>{{ profile_form.birth_date }}</td>
+                            <td> {{ user_form.last_name }}</td>
                         </tr>
                         <tr>
-                            <th>{{ profile_form.size.label }} </th> <td>{{ profile_form.size }}</td>
+                            <th>{{ profile_form.gender.label }} </th>   
                         </tr>
                         <tr>
-                            <th>{{ profile_form.weight.label }} </th> <td>{{ profile_form.weight }}</td>
+                            <td>{{ profile_form.gender }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ profile_form.birth_date.label }} </th>  
+                        </tr>
+                        <tr>
+                            <td>{{ profile_form.birth_date }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ profile_form.size.label }} </th>   
+                        </tr>
+                        <tr>
+                            <td>{{ profile_form.size }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ profile_form.weight.label }} </th>   
+                        </tr>
+                        <tr>
+                            <td>{{ profile_form.weight }}</td>
                         </tr>
                     </table>
                 </div>
@@ -44,22 +63,39 @@
                 <div class="col s8 m6">
                     <table class="table-form">
                         <tr>
-                            <th>{{ profile_form.licence_id.label }} </th> <td> {{ profile_form.licence_id }}</td>
+                            <th>{{ profile_form.licence_id.label }} </th>   </tr>
+                        <tr>
+                            <td> {{ profile_form.licence_id }}</td>
                         </tr>
                         <tr>
-                            <th>{{ profile_form.isaf_id.label }} </th> <td> {{ profile_form.isaf_id }}</td>
+                            <th>{{ profile_form.isaf_id.label }} </th>   </tr>
+                        <tr>
+                            <td> {{ profile_form.isaf_id }}</td>
                         </tr>
                         <tr>
-                            <th>{{ profile_form.level.label }} </th> <td> {{ profile_form.level }}</td>
+                            <th>{{ profile_form.level.label }} </th>   </tr>
+                        <tr>
+                            <td> {{ profile_form.level }}</td>
                         </tr>
                         <tr>
-                            <th>{{ profile_form.language.label }} </th> <td> {{ profile_form.language }}</td>
+                            <th>{{ profile_form.skills.label }} </th>   </tr>
+                        <tr>
+                            <td> {{ profile_form.skills }}</td>
                         </tr>
                         <tr>
-                            <th>{{ profile_form.description.label }} </th> <td> {{ profile_form.description }}</td>
+                            <th>{{ profile_form.language.label }} </th>   </tr>
+                        <tr>
+                            <td> {{ profile_form.language }}</td>
                         </tr>
                         <tr>
-                            <th>{{ profile_form.best_results.label }} </th> <td> {{ profile_form.best_results }}</td>
+                            <th>{{ profile_form.description.label }} </th>   </tr>
+                        <tr>
+                            <td> {{ profile_form.description }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ profile_form.best_results.label }} </th>    </tr>
+                        <tr>
+                            <td> {{ profile_form.best_results }}</td>
                         </tr>
                     </table>
                 </div>
@@ -70,3 +106,7 @@
         </div>
     </form>
 </div>
+
+<script type="text/javascript">
+$('select#id_skills').tokenize( { 'displayDropdownOnFocus': true});
+</script>

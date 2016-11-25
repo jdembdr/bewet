@@ -3,5 +3,7 @@ from django.utils.translation import ugettext as _
 from django.db import models
 
 class Zone(models.Model):
-    pass
+    name = models.TextField()
 
+    def __unicode__(self):
+        return self.name

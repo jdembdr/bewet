@@ -52,9 +52,13 @@ class CrewProfileForm(forms.ModelForm):
     class Meta:
         model = Crew
         fields = ['gender', 'size', 'weight',
-                'picture', 'birth_date',
+                'picture', 'birth_date','skills',
                 'licence_id','isaf_id','level',
                 'language', 'description', 'best_results']
+
+    class Media:
+        css = {'all': ('css/jquery.tokenize.css',), }
+        js = ('js/jquery.tokenize.js',)
 
 class UserForm(forms.ModelForm):
     class Meta:

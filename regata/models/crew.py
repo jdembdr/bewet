@@ -13,11 +13,18 @@ def create_profile( sender, **kwargs):
 post_save.connect(create_profile, sender=User)
 
 # Create your models here.
-class CrewRole(models.Model):
-    name = models.CharField(max_length=30)
 
 class Language(models.Model):
-    language = models.CharField(max_length=10)
+    name = models.CharField(max_length=10)
+
+    def __unicode__(self):
+        return self.name
+
+class Skill(models.Model):
+    name = models.CharField(max_length=20)
+
+    def __unicode__(self):
+        return self.name
 
 class Crew(models.Model):
     # subscription
@@ -41,27 +48,6 @@ class Crew(models.Model):
             ( PROFESSIONAL, _('professional'))
             )
 
-    SKIPPER='SKP'
-    NUM_1='NB1'
-    NUM_2='NB2'
-    BARREUR='BAR'
-    TACTICIAN = 'TAC'
-    NAVIGATOR = 'NAV'
-    MAINSAIL = 'MNS'
-    WINCHER = 'WCH'
-    FRONTSAIL = 'FTS'
-    COMPETENCE_CHOICE=(
-            ( SKIPPER, _('skipper')),
-            ( BARREUR, _('sailor')),
-            ( NUM_1, _('number 1')),
-            ( NUM_2, _('number 2/Pitman')),
-            ( TACTICIAN, _('tactician')),
-            ( NAVIGATOR, _('navigator')),
-            ( MAINSAIL, _('mainsail')),
-            ( WINCHER, _('wincher')),
-            ( FRONTSAIL, _('frontsail')),
-            )
-
     picture = models.ImageField(upload_to='documents/%Y/%m/%d', default='default.png', blank=True, null=True)
     birth_date = models.DateField(blank=True, null=True)
     gender = models.CharField(
@@ -69,6 +55,8 @@ class Crew(models.Model):
             blank=True,
             null=True,
             choices=GENDER_CHOICE)
+
+    skills = models.ManyToManyField(Skill, related_name="crews", blank=True)
 
     size = models.IntegerField(blank=True, null=True)
     weight = models.IntegerField(blank=True, null=True)

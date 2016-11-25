@@ -15,5 +15,5 @@ class Boat(models.Model):
     # Foreign keys
     skipper = models.ForeignKey('Crew')
     club = models.ForeignKey('Club', blank=True,null=True)
-    zone = models.ForeignKey('Zone', blank=True, null=True)
+    zones = models.ManyToManyField('Zone', related_name="boats", blank=True)
 

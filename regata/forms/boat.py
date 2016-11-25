@@ -5,11 +5,14 @@ from django import forms
 from regata.models.boat import Boat
 
 class BoatProfileForm(forms.ModelForm):
-    picture = forms.FileField( widget=forms.FileInput)
+    picture = forms.FileField( widget=forms.FileInput )
 
     class Meta:
         model = Boat
         fields = ['picture', 'name', 'length', 'sail_number',
                 'boat_type', 'build_year', 'owner',
-                'description', 'club', 'zone']
+                'description', 'club', 'zones']
 
+    class Media:
+        css = {'all': ('css/jquery.tokenize.css',), }
+        js = ('js/jquery.tokenize.js',)
