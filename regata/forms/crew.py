@@ -57,7 +57,7 @@ class CrewProfileForm(forms.ModelForm):
                 'language', 'description', 'best_results']
 
     class Media:
-        css = {'all': ('css/jquery.tokenize.css',), }
+        css = {'all': ('css/jquery.tokenize.css', 'regata/css/bewet-tokenize.css'), }
         js = ('js/jquery.tokenize.js',)
 
 class UserForm(forms.ModelForm):

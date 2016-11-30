@@ -10,7 +10,7 @@
                 <h5>{% trans 'Profil personnel' %}</h5>
                 <div class="divider"> </div>
                 <div class="col s8 m4 center">
-                    <img class="avatar" src="{{ user.crew.picture.url | default:'icons/avatar/default.png' }}"></img>
+                    <img id="avatar-preview" class="avatar" src="{{ user.crew.picture.url | default:'icons/avatar/default.png' }}"></img>
                     {{ profile_form.picture }}
                 </div>
                 <div class="col s8 m6 ">
@@ -108,5 +108,21 @@
 </div>
 
 <script type="text/javascript">
-$('select#id_skills').tokenize( { 'displayDropdownOnFocus': true});
+$('select#id_skills').tokenize( 
+        { 
+            'displayDropdownOnFocus': true, 
+            'newElements': false,
+        });
+
+document.getElementById("id_picture").onchange = function () {
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+        // get loaded data and render thumbnail.
+        document.getElementById("avatar-preview").src = e.target.result;
+    };
+
+    // read the image file as a data URL.
+    reader.readAsDataURL(this.files[0]);
+};
 </script>
