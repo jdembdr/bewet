@@ -1,7 +1,20 @@
 from __future__ import unicode_literals
 from django.utils.translation import ugettext as _
-from django.db import models
+from django.contrib.gis.db import models
 
 class Club(models.Model):
-    pass
+    club_id = models.TextField('FFV club identifiant', primary_key=True)
+    name = models.CharField(max_length=100)
+    address = models.TextField(default='')
+    city = models.TextField(default='')
+    postal = models.TextField(default='')
+    lat = models.FloatField(default=0, blank=True)
+    lon = models.FloatField(default=0, blank=True)
+    phone = models.CharField(max_length=20)
+    fax = models.CharField(max_length=20)
+    email = models.EmailField(default='')
+    site = models.URLField(default='')
+    summary = models.TextField(default='')
+    description = models.TextField(default='')
+    scheduling = models.TextField(default='')
 

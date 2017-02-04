@@ -226,7 +226,7 @@ def main():
     parser.add_option("--output-regattas", type="string")
     parser.add_option("-d", "--departments", action="callback", type="string",
             callback=parse_dpt,
-            help="specify departments number separated by comma. range are accepted by using -. ex: 13,10,9,20-30")
+            help="Specify departments number separated by comma. Range are accepted by using -. ex: 13,10,9,20-30")
 
     (options, args) = parser.parse_args()
 

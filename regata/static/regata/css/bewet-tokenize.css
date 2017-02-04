@@ -1,0 +1,41 @@
+div.Tokenize {
+    width:100%;
+}
+div.Tokenize ul.TokensContainer, div.Tokenize ul.Dropdown {
+    border: none;
+    height: initial;
+    overflow-y: hidden;
+}
+
+div.Tokenize ul.TokensContainer li.Token {
+    border: 1px solid #00c1ea;
+    background-color: white;
+    border-radius: 2px;
+    padding: 0 5px;
+    line-height: 18px;
+    height: 2rem;
+    font-weight: normal;
+    border-radius: 2px;
+    display:table
+}
+
+div.TokenizeMeasure, div.Tokenize ul li span, div.Tokenize ul.TokensContainer li.TokenSearch input {
+    font-family: quicksandbold, Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    vertical-align: middle;
+    display: table-cell;
+}
+
+div.Tokenize ul.TokensContainer li.Token, div.Tokenize ul.TokensContainer li.TokenSearch {
+    margin-left: 0px;
+    margin-right: 5px;
+}
+
+div.Tokenize ul.TokensContainer li.Token a.Close {
+    vertical-align: middle;
+    display: table-cell;
+    font-family: quicksandbold, Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    vertical-align: middle;
+
+}
