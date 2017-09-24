@@ -4,6 +4,7 @@
 
 {% block header %}
 <link rel="stylesheet" href="{% static 'regata/css/home.css' %}"/>
+<link href='https://api.mapbox.com/mapbox-gl-js/v0.31.0/mapbox-gl.css' rel='stylesheet' />
 {% endblock %}
 
 {% block content %}
@@ -51,37 +52,52 @@
     </ul>
 </div>
 
-<div class="row" style="background-color: #00c1ea; width:100%;">
+<div class="row center" id="separator" style="background-color: #000000;margin-bottom:0;width:100%" >
+    <img id="white_arrow" src="{% static 'icons/selector-white.png' %}"></img>
+    <span id="separator" class="z-depth-1 center">{% trans 'Les régates de ce mois' %} </span>
+</div>
+<div class="row" style="background-color: #000000;margin-bottom:0;width:100%;align:center" >
+    <div class="wrapper" style="width:100%;height:100%" >
+        <div id="map" style="width:100%; height:600px">
+        </div>
+        <div class="map_listing">
+            <ul>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="row" style="background-color: #00c1ea; width:100%">
     <div id="separator" class="center" style="position:relative;" >
         <img id="white_arrow" src="{% static 'icons/selector-white.png' %}"></img>
         <div class="center" >
-            <span class="z-depth-1" id="separator">{% trans 'Bonjour ' %} {{user.first_name}}</span>
+            <span class="z-depth-1" id="separator">{% trans 'Faites des matchs' %} </span>
         </div>
     </div>
     <div class="col s6 m4 l2 offset-l3">
         <div class="center promo">
             <img src="{% static 'regata/icons/picto_equipier_home_page.png' %}"></img>
-            <p class="promo-caption"><b>{% trans 'Des équipiers,' %}</b></p>
-            <p class="promo-desc">{% lorem %}</p>
+            <p class="promo-caption"><b>{% trans 'Je complète,' %}</b></p>
+            <p class="promo-desc">{% trans 'mon profil' %}</p>
         </div>
     </div>
     <div class="col s6 m4 l2">
         <div class="center promo promo-example">
             <img src="{% static 'regata/icons/picto_bateau_home_page.png' %}"></img>
-            <p class="promo-caption"><b>{% trans 'des bateaux,' %}</b></p>
-            <p class="promo-desc">{% lorem %}</p>
+            <p class="promo-caption"><b>{% trans 'Je sélectionne,' %}</b></p>
+            <p class="promo-desc">{% trans 'une régate' %}</p>
         </div>
     </div>
     <div class="col s12 m4 l2">
         <div class="center promo promo-example">
             <img src="{% static 'regata/icons/picto_regate_home_page.png' %}"></img>
-            <p class="promo-caption"><b>{% trans 'des régates.' %}</b></p>
-            <p class="promo-desc">{% lorem %}</p>
+            <p class="promo-caption"><b>{% trans 'Ca match !' %}</b></p>
+            <p class="promo-desc">{% trans 'Je navigue  ' %}</p>
         </div>
     </div>
     <div class="col s12 m6 offset-m3 l4 offset-l4 center" style="margin-bottom:30px;">
         <hr style="width:43px; height:3px; background: #ffffff; border:none;"/>
-        <p class="white-text">{% trans 'Comment régater avec Bewet ?' %}</p>
+        <p class="white-text">{% trans 'Régatez toute l\'année avec Bewet.' %}</p>
         <p class="center black-text" style="font-style:bold;font-size:1.2em">{% trans 'Voir la vidéo' %}</b></p>
         <a class="video-modal-trigger" href="#modal_video"><img src="{% static 'regata/icons/bouton_play_video.png' %}"></img></a>
     </div>
@@ -95,6 +111,96 @@
 {% endblock %}
 
 {% block js %}
+<script src='https://api.mapbox.com/mapbox-gl-js/v0.31.0/mapbox-gl.js'></script>
+
+<script type="text/javascript">
+mapboxgl.accessToken = 'pk.eyJ1IjoiamRlbWF1cnkiLCJhIjoiOGJiYjkzOWI3MzY4ZGIwNjM4MDE0MmU1OWU1ZTU3YzgifQ.lXa1KAJd8k-DU_WvtsINlA';
+
+var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v9',
+    minZoom:0,
+    maxZoom:20,
+    zoom:8,
+    center:[5.22,43.18],
+});
+
+// Add zoom and rotation controls to the map.
+map.addControl(new mapboxgl.NavigationControl(), 'top-right');
+
+// using jQuery
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+var csrftoken = getCookie('csrftoken');
+
+function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
+$.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
+    }
+});
+
+map.on('load', function(){
+    $.post(
+            "{% url 'regata:_clubs' %}", 
+            function(data){
+                map.addSource("clubs", {
+                    "type": "geojson",
+                    "data": JSON.parse(data),
+                });
+
+
+                map.addLayer({
+                    "id":"clubs_layer",
+                    "type":"circle",
+                    "source":'clubs',
+                    "paint": {
+                        "circle-radius": 10,
+                        "circle-color": "#ff442b",
+                        "circle-opacity": 0.6
+                    } 
+                });
+        });
+});
+
+map.on('click', function(e) {
+  var features = map.queryRenderedFeatures(e.point, {
+    layers: ['clubs_layer']
+  });
+
+  if (!features.length) {
+    return;
+  }
+
+  var feature = features[0];
+
+  var popup = new mapboxgl.Popup({ offset: [0, -15] })
+    .setLngLat(feature.geometry.coordinates)
+    .setHTML('<span>' + feature.properties.name + '</span>')
+    .setLngLat(feature.geometry.coordinates)
+    .addTo(map);
+});
+
+
+</script>
 
 <script type="text/javascript">
 $( document ).ready(function(){
@@ -109,8 +215,7 @@ $( document ).ready(function(){
         ready: function() {
             $('#modal_video').load('{% url 'regata:video' %}'); }, // Callback for Modal open
         complete: function() {} // Callback for Modal close
-    }
-    );
+    });
 });
 </script>
 {% endblock %}

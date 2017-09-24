@@ -3,11 +3,11 @@ from django.utils.translation import ugettext as _
 from django.db import models
 
 class Grade(models.Model):
-    name = models.CharField(max_length=30)
+    name = models.CharField(max_length=30, primary_key=True)
     description = models.TextField(max_length=300)
 
-class Jauge(models.Model):
-    name = models.CharField(max_length=03)
+class Class(models.Model):
+    name = models.CharField(max_length=30, primary_key=True)
     description = models.TextField(max_length=300)
 
 class Tour(models.Model):
@@ -20,6 +20,6 @@ class Regata(models.Model):
     club = models.ForeignKey('Club')
     start = models.DateField()
     end = models.DateField()
-    jauge = models.ForeignKey('Jauge', null=True)
-    grade = models.ForeignKey('Grade', null=True)
+    classes = models.ManyToManyField('Class')
+    grades = models.ManyToManyField('Grade')
 

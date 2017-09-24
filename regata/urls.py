@@ -21,9 +21,11 @@ from django.conf import settings
 from .views import video
 from .views.crew import WelcomeView, user_settings, user_profile, boat_profile, BoatUpdateView, BoatCreateView
 
+from .views.regata import MapRequestView
 
 urlpatterns = [
         url(r'video', video, name='video'),
+        url(r'_clubs', MapRequestView.as_view(), name='_clubs'),
         url(r'welcome/$', WelcomeView.as_view(), name='welcome'),
         url(r'settings/$', user_settings, name='settings'),
         url(r'user_profile/$', user_profile, name='user_profile'),

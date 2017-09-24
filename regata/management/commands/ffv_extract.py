@@ -75,7 +75,7 @@ def extract_club( html):
     elts = html.children("td")
     club = dict()
     club["name"]     = elts[0].text_content()
-    club["id"]      = urlparse.parse_qs(urlparse.urlparse(elts.eq(0).find("a").attr.href).query)["stcode"][0]
+    club["club_id"]      = urlparse.parse_qs(urlparse.urlparse(elts.eq(0).find("a").attr.href).query)["stcode"][0]
     club["postal"]  = elts[1].text_content()
     club["city"]    = elts[2].text_content()
     club["phone"]   = "".join(re.findall("(\d+)",elts[3].text))
@@ -88,7 +88,6 @@ def extract_club_details( id ):
 
     club=dict()
     club["name"] = body("div#conteneur h1")[0].text_content().strip()
-    club["id"] = id
 
     details_table = body("table.petitcarto tbody")
     club["address"] = details_table("tr").eq(1).find("td").eq(0).find("p").eq(0).text().strip()
@@ -96,7 +95,7 @@ def extract_club_details( id ):
     latlon = re.findall("(\d+,\d+)", details_table("tr").eq(1).find("td").eq(0).find("p").eq(1).text())
     if len(latlon) > 1:
         club["lat"] = latlon[0].replace(',','.').strip()
-        club["long"] = latlon[1].replace(',','.').strip()
+        club["lon"] = latlon[1].replace(',','.').strip()
 
     contact_fields = details_table("tr").eq(1).find("td").eq(2)
 
@@ -114,7 +113,7 @@ def extract_club_details( id ):
     information_fields = details_table("tr").eq(2).find("td").eq(0).find("p")
     club["summary"] = information_fields[0].text_content().strip()
     club["description"] = information_fields[1].text_content().strip()
-    club["opening"] = information_fields[2].text_content().strip()
+    club["scheduling"] = information_fields[2].text_content().strip()
 
     return club
 
@@ -135,7 +134,7 @@ def get_clubs(dpt, details=False ):
 
             if details:
                 # extract details from specific description page
-                club.update(extract_club_details(club["id"]))
+                club.update(extract_club_details(club["club_id"]))
 
             clubs.append(club)
 
@@ -153,13 +152,13 @@ def get_calendar(club):
         elts = html.children("td")
 
         regatta["name"] = elts[2].text_content()
-        regatta["id"] = urlparse.parse_qs(urlparse.urlparse(elts.eq(2).find("a").attr.href).query)["id"][0]
+        regatta["regata_id"] = urlparse.parse_qs(urlparse.urlparse(elts.eq(2).find("a").attr.href).query)["id"][0]
 
         dates = re.findall("[\d\/]+", elts[1].text_content())
         regatta["start"] = dates[0]
         regatta["end"] = dates[1] if len(dates) >1 else dates[0]
         regatta["grade"] = elts[4].text_content()
-        regatta["classe"] = elts[5].text_content()
+        regatta["class"] = elts[5].text_content()
         regatta["club_id"] = club
         return regatta
 
@@ -192,7 +191,7 @@ def ffv_vacuum(dpt_list=range(0,100), output_format="csv", regattas_file=None, c
 
         planning = []
         for club in clubs:
-            planning.extend(get_calendar(club["id"]))
+            planning.extend(get_calendar(club["club_id"]))
 
         try:
             write = locals()["write_"+output_format]
@@ -200,9 +199,9 @@ def ffv_vacuum(dpt_list=range(0,100), output_format="csv", regattas_file=None, c
             write = write_stdout
 
         if clubs_file is not None or output_format =='stdout':
-            infos = ["id", "name", "address", "city", "postal",
-                    "lat", "long", "phone", "fax", "email", "site",
-                    "summary", "description", "opening"]
+            infos = ["club_id", "name", "address", "city", "postal",
+                    "lat", "lon", "phone", "fax", "email", "site",
+                    "summary", "description", "scheduling"]
             write(clubs_file, infos, clubs)
 
         if regattas_file is not None or output_format =='stdout':

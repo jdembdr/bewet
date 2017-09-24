@@ -39,7 +39,7 @@ a.bewet-btn{
     color: #ffffff;
 }
 
-div#separator span{
+div#separator span#separator {
     border-radius: 35px;
     background-color: #ffffff;
     color: #000000;
@@ -82,3 +82,51 @@ a.video-modal-trigger img:hover{
 
 }
 
+.wrapper {
+    display: inline-block;
+    position:relative;
+}
+
+.hover {
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+}
+
+#map { 
+    position:absolute; 
+    top:0; 
+    bottom:0; 
+    width:100%; 
+}
+
+.map_listing {
+        font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+        font-weight: 600;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        z-index: 1;
+        border-radius: 3px;
+        max-width: 20%;
+        color: #fff;
+}
+
+.map_listing ul>li:first-child {
+    border-radius: 3px 3px 0 0;
+}
+
+.map_listing ul>li:last-child {
+    border-radius: 0 0 3px 3px;
+    border: none;
+}
+
+.map_listing ul>li {
+    background-color: #3386c0;
+    display: block;
+    cursor: pointer;
+    padding: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+}

@@ -8,8 +8,6 @@ class Club(models.Model):
     address = models.TextField(default='')
     city = models.TextField(default='')
     postal = models.TextField(default='')
-    lat = models.FloatField(default=0, blank=True)
-    lon = models.FloatField(default=0, blank=True)
     phone = models.CharField(max_length=20)
     fax = models.CharField(max_length=20)
     email = models.EmailField(default='')
@@ -17,4 +15,7 @@ class Club(models.Model):
     summary = models.TextField(default='')
     description = models.TextField(default='')
     scheduling = models.TextField(default='')
+    position = models.PointField(blank=True, null=True)
+
+
 
